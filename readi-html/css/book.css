@@ -1,0 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.book {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  min-width: 900px;
+  min-height: 700px;
+  background: #242424;
+  position: relative;
+}
+
+.book {
+  width: 420px;
+  height: 654px;
+  transform: translate(-50%, -50%) rotatex(10deg) rotatey(-10deg);
+  transform-style: preserve-3d;
+}
+
+.cardd{
+width: 300px;
+height: 289px;
+border: none;
+border-radius: 20px;
+padding: 5px;
+}
+
+.page {
+  width: 420px;
+  height: 654px;
+  position: absolute;
+  border: none;
+  border-radius: 5px;
+  top: 0;
+  right: 0;
+  transition: transform 1s;
+}
+
+.page:nth-child(1) {
+  padding: 5% 4% 4% 5%;
+  transform-origin: 0% 50%;
+  transform: translatez(-1px);
+  background: #242424;
+}
+
+.left-side:nth-child(1) {
+  transform: translatez(1px) rotatey(-180deg);
+}
+
+.page:nth-child(2) {
+  padding: 5% 5% 4% 4%;
+  transform-origin: 100% 50%;
+  transform: translatez(-2px) scalex(-1) translatex(100%);
+  background-image: url("https://i.postimg.cc/MT3wpbd7/image-1993764041.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.left-side:nth-child(2) {
+  transform: translatez(2px) scalex(-1) translatex(100%) rotatey(180deg);
+}
+
+.page:nth-child(3) {
+  padding: 5% 4% 4% 5%;
+  transform-origin: 0% 50%;
+  transform: translatez(-3px);
+  background-image: url("https://i.postimg.cc/8zXjxMV6/image-1993764302.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.left-side:nth-child(3) {
+  transform: translatez(3px) rotatey(-180deg);
+}
+
+.page:nth-child(4) {
+  padding: 5% 5% 4% 4%;
+  transform-origin: 100% 50%;
+  transform: translatez(-4px) scalex(-1) translatex(100%);
+  background-image: url("https://i.postimg.cc/8zXjxMV6/image-1993764302.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.left-side:nth-child(4) {
+  transform: translatez(4px) scalex(-1) translatex(100%) rotatey(180deg);
+}
+
+.page:nth-child(5) {
+  padding: 5% 4% 4% 5%;
+  transform-origin: 0% 50%;
+  transform: translatez(-5px);
+  background-image: url("https://i.postimg.cc/8zXjxMV6/image-1993764302.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.left-side:nth-child(5) {
+  transform: translatez(5px) rotatey(-180deg);
+}
+
+.page:nth-child(6) {
+  padding: 5% 5% 4% 4%;
+  transform-origin: 100% 50%;
+  transform: translatez(-6px) scalex(-1) translatex(100%);
+  background-image: url("https://i.postimg.cc/8zXjxMV6/image-1993764302.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.left-side:nth-child(6) {
+  transform: translatez(6px) scalex(-1) translatex(100%) rotatey(180deg);
+}
+
+.page:nth-child(7) {
+  padding: 5% 4% 4% 5%;
+  transform-origin: 0% 50%;
+  transform: translatez(-7px);
+  background-image: url("https://i.postimg.cc/8zXjxMV6/image-1993764302.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.left-side:nth-child(7) {
+  transform: translatez(7px) rotatey(-180deg);
+}
+
+.page:nth-child(8) {
+  padding: 5% 5% 4% 4%;
+  transform-origin: 100% 50%;
+  transform: translatez(-8px) scalex(-1) translatex(100%);
+  background-image: url("https://i.postimg.cc/8zXjxMV6/image-1993764302.png");
+}
+
+.left-side:nth-child(8) {
+  transform: translatez(8px) scalex(-1) translatex(100%) rotatey(180deg);
+}
+
+
+
+.cover-front:nth-child(1) {
+  text-align: center;
+  background-image: url("https://i.postimg.cc/c4Qy8SJk/Frame-495.png");
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+.cover-front:nth-child(1) h1 {
+  font-family: "Lora", serif;
+  font-size: 40px;
+  color: #ffffff;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+.cover-front:nth-child(1) h2 {
+  font-family: "EB Garamond", serif;
+  font-size: 24px;
+  color: #ffffff;
+  position: relative;
+}
+.cover-front:nth-child(1) .hat {
+  font-size: 100px;
+  color: #134a78;
+  position: relative;
+  top: 3%;
+}
+
+p {
+  margin-top: 4%;
+  margin-bottom: 2%;
+  font-family: "EB Garamond", serif;
+  font-size: 16px;
+}
+
+.page:nth-child(3) p:first-of-type:first-letter {
+  font-size: 32px;
+}
+ 
+ 
