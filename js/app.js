@@ -27,102 +27,287 @@
   
 // }
 
-  /* Функция, создающая частицы при нажатии на кнопку PlayButton*/
-  // function pop(e) {
-  //   let amount = 30;
-  //   if (e.target.dataset.type === 'shadow' || e.target.dataset.type === 'line') {
-  //     amount = 60;
-  //   }
-    
-  //   // Получаем координаты центра кнопки
-  //   const bbox = e.target.getBoundingClientRect();
-  //   const x = bbox.left + bbox.width / 2;
-  //   const y = bbox.top + bbox.height / 2;
-    
-  //   // Создаем заданное количество частиц
-  //   for (let i = 0; i < amount; i++) {
-  //     createParticle(x, y, e.target.dataset.type);
-  //   }
-  // }
+//облачка
+// let scrollValue = 0;
+// const maxScroll = 200; // Лимит скролла
+// const minScale = 1; // Начальный масштаб
+// const maxScale = 1.5; // Максимальный масштаб
+// const background = document.querySelector(".room");
+// const body = document.body;
 
-  // /* Функция создания отдельных частиц */
-  // function createParticle(x, y, type) {
-  //   const particle = document.createElement('div');
-  //   particle.classList.add('particle');
-  //   document.body.appendChild(particle);
-    
-  //   let size = Math.floor(Math.random() * 20 + 10);
-  //   let destinationX = (Math.random() - 0.5) * 200; // Разброс частиц по горизонтали
-  //   let destinationY = (Math.random() - 0.5) * 200; // Разброс частиц по вертикали
-  //   let rotation = Math.random() * 520;
-  //   let delay = Math.random() * 200;
+// // Облака
+// const cloudLeftTop = document.querySelector(".cloud-left-top");
+// const cloudRightTop = document.querySelector(".cloud-right-top");
+// const cloudLeftBottom = document.querySelector(".cloud-left-bottom");
+// const cloudRightBottom = document.querySelector(".cloud-right-bottom");
 
-  //   // Если тип частицы - символ, создаем сердечко с разными цветами
-  //   if (type === 'symbol') {
-  //     particle.innerHTML = '&#10084;';
-  //     const colors = ['#E3B0F0', '#BD5DDE', '#9721FF'];
-  //     particle.style.color = colors[Math.floor(Math.random() * colors.length)];
-  //     particle.style.fontSize = `${size}px`;
-  //   }
+// window.addEventListener("wheel", (e) => {
+//     scrollValue += e.deltaY * 0.03;
+//     scrollValue = Math.max(0, Math.min(maxScroll, scrollValue)); // Ограничение скролла
 
-  //   particle.style.width = `${size}px`;
-  //   particle.style.height = `${size}px`;
-  //   particle.style.left = `${x}px`;
-  //   particle.style.top = `${y}px`;
-  //   particle.style.position = 'absolute';
-    
-  //   // Анимация движения и исчезновения частиц
-  //   const animation = particle.animate([
-  //     {
-  //       transform: `translate(-50%, -50%) scale(1) rotate(0deg)`,
-  //       opacity: 1
-  //     },
-  //     {
-  //       transform: `translate(${destinationX}px, ${destinationY}px) scale(0.5) rotate(${rotation}deg)`,
-  //       opacity: 0
-  //     }
-  //   ], {
-  //     duration: Math.random() * 1000 + 1500,
-  //     easing: 'ease-out',
-  //     delay: delay
-  //   });
-    
-  //   // Удаляем частицу после завершения анимации
-  //   animation.onfinish = () => particle.remove();
-  // }
+//     let shiftX = (scrollValue / maxScroll) * 100; // Смещение облаков по X
+//     let shiftY = (scrollValue / maxScroll) * 50; // Смещение облаков по Y
+//     let scale = minScale + (scrollValue / maxScroll) * (maxScale - minScale); // Масштабирование фона
 
-  // // Назначаем обработчик события клика на кнопку
-  // document.getElementById("buttonPlay").addEventListener("click", pop);
-  
+//     // 🌫️ Двигаем облака
+//     cloudLeftTop.style.transform = `translateX(-${shiftX}vw) translateY(-${shiftY}vh)`;
+//     cloudRightTop.style.transform = `translateX(${shiftX}vw) translateY(-${shiftY}vh)`;
+//     cloudLeftBottom.style.transform = `translateX(-${shiftX}vw) translateY(${shiftY}vh)`;
+//     cloudRightBottom.style.transform = `translateX(${shiftX}vw) translateY(${shiftY}vh)`;
 
+//     // 🎇 Масштабируем фон
+//     background.style.transform = `scale(${scale})`;
 
-// === SWIPER СЛАЙДЕР ===
-const showSlider = new Swiper('.showcase-carousel', {
-    loop: true,
-    speed: 1800,
-    centeredSlides: true,
-    navigation: {
-        nextEl: '.showcase-navigation__next',
-        prevEl: '.showcase-navigation__prev'
-    },
-    allowTouchMove: true,
-    slideToClickedSlide: false,
-    breakpoints: {
-        0: {  // 👈 Для всех устройств меньше 480px
-            slidesPerView: 1
-        },
-        480: {  // 👈 От 480px до 640px
-            slidesPerView: 2
-        },
-        640: {  // 👈 От 640px и выше
-            slidesPerView: 3
-        }
+//     // 🌑 Управляем затемнением
+//     if (scrollValue > 80) {
+//         body.classList.add("scrolled"); // Затемнение уходит
+//     } else {
+//         body.classList.remove("scrolled");
+//     }
+// });
+
+let scrollValue = 0;
+const maxScroll = 300;
+const minScale = 1;
+const maxScale = 1.7;
+
+const background = document.querySelector(".room");
+const windowElement = document.querySelector(".window");
+const zoomContainer = document.querySelector(".zoom-container");
+const mball = document.querySelector(".mball");
+const tablet = document.querySelector(".tablet");
+const clouds = document.querySelector(".clouds");
+const frm = document.querySelector(".frm");
+
+const cloudLeftTop = document.querySelector(".cloud-left-top");
+const cloudRightTop = document.querySelector(".cloud-right-top");
+const cloudLeftBottom = document.querySelector(".cloud-left-bottom");
+const cloudRightBottom = document.querySelector(".cloud-right-bottom");
+
+let isTransitioning = false;
+
+window.addEventListener("wheel", (e) => {
+    if (isTransitioning) return;
+
+    scrollValue += e.deltaY * 0.01;
+    scrollValue = Math.max(0, Math.min(maxScroll, scrollValue));
+
+    let scale = minScale + (scrollValue / maxScroll) * (maxScale - minScale);
+    background.style.transform = `scale(${scale})`;
+
+    // Открытие окна и приближение портала (80% пути)
+    if (scrollValue > maxScroll * 0.8) {
+        windowElement.classList.add("opened");
+        zoomContainer.classList.add("opened");
+    } else {
+        windowElement.classList.remove("opened");
+        zoomContainer.classList.remove("opened");
+    }
+
+    // Исчезновение объектов, появление fullscreen портала (85% пути)
+    if (scrollValue > maxScroll * 0.85) {
+        mball.style.opacity = "0";
+        tablet.style.opacity = "0";
+        windowElement.style.opacity = "0";
+        zoomContainer.classList.add("fullscreen");
+    } else {
+        mball.style.opacity = "1";
+        tablet.style.opacity = "1";
+        windowElement.style.opacity = "1";
+        zoomContainer.classList.remove("fullscreen");
+    }
+
+    // Облака начинают разъезжаться только после открытия створок
+    if (scrollValue > maxScroll * 0.85) {
+        let shiftX = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 100;
+        let shiftY = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 50;
+
+        cloudLeftTop.style.transform = `translateX(-${shiftX}vw) translateY(-${shiftY}vh)`;
+        cloudRightTop.style.transform = `translateX(${shiftX}vw) translateY(-${shiftY}vh)`;
+        cloudLeftBottom.style.transform = `translateX(-${shiftX}vw) translateY(${shiftY}vh)`;
+        cloudRightBottom.style.transform = `translateX(${shiftX}vw) translateY(${shiftY}vh)`;
+    }
+
+    // 🌙 Луна уходит вверх ПОСТЕПЕННО, начиная с 85%
+    if (scrollValue > maxScroll * 0.85) {
+        let moonShift = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 150;
+        zoomContainer.style.transform = `translateY(-${moonShift}%)`;
+
+        // 🔥 Плавное исчезновение `room`
+        let roomOpacity = 1 - (scrollValue - maxScroll * 0.85) / (maxScroll * 0.15);
+        background.style.opacity = roomOpacity;
+    } else {
+        zoomContainer.style.transform = `translateY(0)`;
+        background.style.opacity = "1";
+    }
+
+    // 🌀 Когда луна ушла, `frm` плавно появляется
+    if (scrollValue >= maxScroll) {
+        isTransitioning = true;
+
+        // 🌓 Уводим луну ВНЕ экрана
+        zoomContainer.style.transition = "transform 2s ease-out, opacity 2s ease-in-out";
+        zoomContainer.style.transform = "translateY(-200%)";
+        zoomContainer.style.opacity = "0";
+
+        // 🏚️ Затемняем комнату
+        background.style.transition = "opacity 2s ease-in-out";
+        background.classList.add("hidden");
+
+        // 🔥 Поднимаем `.frm`
+        setTimeout(() => {
+            frm.classList.add("active"); // ✅ Делаем кликабельным
+            isTransitioning = false;
+        }, 800);
     }
 });
 
 
+
+// === СВЕТЛЯЧКИ ===
+
+function createFirefly() {
+    const firefly = document.createElement("div");
+    firefly.classList.add("firefly");
+    
+    let startX = Math.random() * window.innerWidth; // Рандомная начальная позиция по X
+    let startY = Math.random() * window.innerHeight; // Рандомная начальная позиция по Y
+    let duration = Math.random() * 3 + 2; // Разная скорость полета
+
+    firefly.style.left = `${startX}px`;
+    firefly.style.top = `${startY}px`;
+    document.body.appendChild(firefly);
+
+    firefly.animate([
+        { transform: `translateZ(0) scale(0.5)`, opacity: 0 },
+        { transform: `translateZ(200px) scale(1.5)`, opacity: 1 },
+        { transform: `translateZ(400px) scale(0.8)`, opacity: 0 }
+    ], {
+        duration: duration * 1000,
+        easing: "ease-out",
+        fill: "forwards"
+    });
+
+    // Удаляем после завершения анимации
+    setTimeout(() => {
+        firefly.remove();
+    }, duration * 1000);
+}
+
+// Запускаем светлячков при прокрутке
+window.addEventListener("wheel", (e) => {
+    if (e.deltaY > 0) { // Летим только если скроллим вниз
+        for (let i = 0; i < 3; i++) {
+            setTimeout(createFirefly, i * 200);
+        }
+    }
+});
+
+  
+
+  /* Функция, создающая частицы при нажатии на кнопку PlayButton*/
+  function pop(e) {
+    let amount = 30;
+     if (e.target.dataset.type === 'shadow' || e.target.dataset.type === 'line') {
+       amount = 60;
+     }
+    
+     // Получаем координаты центра кнопки
+     const bbox = e.target.getBoundingClientRect();
+     const x = bbox.left + bbox.width / 2;
+     const y = bbox.top + bbox.height / 2;
+    
+     // Создаем заданное количество частиц
+     for (let i = 0; i < amount; i++) {
+       createParticle(x, y, e.target.dataset.type);
+     }
+   }
+
+   /* Функция создания отдельных частиц */
+   function createParticle(x, y, type) {
+     const particle = document.createElement('div');
+     particle.classList.add('particle');
+     document.body.appendChild(particle);
+    
+     let size = Math.floor(Math.random() * 30 + 10);
+     let destinationX = (Math.random() - 0.5) * 200; // Разброс частиц по горизонтали
+     let destinationY = (Math.random() - 0.5) * 200; // Разброс частиц по вертикали
+     let rotation = Math.random() * 520;
+     let delay = Math.random() * 200;
+
+     // Если тип частицы - символ, создаем сердечко с разными цветами
+     if (type === 'symbol') {
+       particle.innerHTML = '&#9829;';
+       const colors = ['#E3B0F0', '#BD5DDE', '#9721FF'];
+      particle.style.color = colors[Math.floor(Math.random() * colors.length)];
+       particle.style.fontSize = `${size}px`;
+     }
+
+     particle.style.width = `${size}px`;
+     particle.style.height = `${size}px`;
+     particle.style.left = `${x}px`;
+     particle.style.top = `${y}px`;
+     particle.style.position = 'absolute';
+    
+     // Анимация движения и исчезновения частиц
+     const animation = particle.animate([
+       {
+         transform: `translate(-50%, -50%) scale(1) rotate(0deg)`,
+         opacity: 1
+       },
+       {
+         transform: `translate(${destinationX}px, ${destinationY}px) scale(0.5) rotate(${rotation}deg)`,
+        opacity: 0
+       }
+     ], {
+       duration: Math.random() * 1000 + 1500,
+       easing: 'ease-out',
+       delay: delay
+     });
+    
+     // Удаляем частицу после завершения анимации
+     animation.onfinish = () => particle.remove();
+   }
+
+   // Назначаем обработчик события клика на кнопку
+   document.getElementById("buttonPlay").addEventListener("click", pop);
+  
+
+
+// === SWIPER СЛАЙДЕР ===
+
+    const showSlider = new Swiper('.showcase-carousel', {
+        loop: true,
+        speed: 1500,
+        centeredSlides: true,
+        slidesPerView: 3,
+        navigation: {
+            nextEl: '.showcase-navigation__next',
+            prevEl: '.showcase-navigation__prev'
+        },
+        breakpoints: {
+            0: {  
+                slidesPerView: 1,
+                spaceBetween: 20
+            },
+            480: {  
+                slidesPerView: 2,
+                spaceBetween: 30
+            },
+            640: {  
+                slidesPerView: 3,
+                spaceBetween: 50
+            }
+        }
+    });
+
+
+
+
 // Ускорение видео заднего фона
-document.querySelector('video').playbackRate = 2;
+const video = document.querySelector('video');
+if (video) video.playbackRate = 2;
+
 
 // === ВОСПРОИЗВЕДЕНИЕ ЗВУКА ПРИ ПРОКРУТКЕ ===
 const slideAudio = document.querySelector(".showcase__audio");
@@ -139,6 +324,9 @@ showSlider.on("slideChangeTransitionStart", playSound);
 document.querySelectorAll(".swiper-slide").forEach(slide => {
     slide.addEventListener("click", playSound);
 });
+
+// === ВОСПРОИЗВЕДЕНИЕ ЗВУКА ПРИ НАЖАТИИ PlayButton ===
+
 
 // === ПОПАПЫ ===
 
@@ -237,15 +425,420 @@ window.onload = function () {
 };
 
 
-// === Переходы между секциями ===
-const sections = document.querySelectorAll("section");
 
-document.getElementById("buttonPlay").addEventListener("click", function() {
-    document.querySelector(".screen1").style.display = "none";
-    document.querySelector(".showcase").style.display = "block";
+// === ПЕРЕХОДЫ МЕЖДУ СЕКЦИЯМИ ===
+function showSection(to, delay = 0) {
+    setTimeout(() => {
+        // Скрываем все секции
+        document.querySelectorAll("section").forEach(section => {
+            section.classList.add("hidden");
+        });
+
+        // Отображаем нужную секцию
+        const toSection = document.getElementById(to);
+        if (!toSection) {
+            console.error(`❌ Ошибка: секция #${to} не найдена`);
+            return;
+        }
+
+        toSection.classList.remove("hidden");
+        toSection.style.opacity = "1";
+
+        // Если переходим к showcase, обновляем Swiper и ставим "Спокойствие" по центру
+        if (to === "showcase") {
+            setTimeout(() => {
+                showSlider.update();
+                showSlider.slideTo(getSlideIndex("Спокойствие"), 0);
+            }, 100);
+        }
+    }, delay);
+}
+
+// Функция получения индекса слайда по настроению
+function getSlideIndex(mood) {
+    let slides = document.querySelectorAll(".swiper-slide");
+    for (let i = 0; i < slides.length; i++) {
+        if (slides[i].querySelector(".features")?.textContent.trim() === mood) {
+            return i;
+        }
+    }
+    return 0; // Если не нашли, по умолчанию первый слайд
+}
+
+// Обработчик клика по кнопке "Начать игру" с задержкой перед переходом
+document.getElementById("buttonPlay")?.addEventListener("click", function (e) {
+    pop(e); // Запускаем анимацию частиц
+
+    // Ждем 2.5 секунды перед переходом
+    showSection("showcase", 2000);
 });
 
+// Переход от showcase к choiceScreen
+document.querySelector(".emotion")?.addEventListener("click", function () {
+    showSection("choiceScreen");
+});
 
+// ==Массив жанров == //
+
+
+const genresByMood = {
+    joy: [
+        { name: "Фэнтези", arcana: "Маг", description: "Мир волшебства, магии и великих приключений." },
+        { name: "Приключения", arcana: "Дурак", description: "Опасные путешествия и неожиданные открытия." },
+        { name: "Хоррор", arcana: "Повешенный", description: "Ощущение страха, леденящие душу тайны." }
+    ],
+    calm: [
+        { name: "Классика", arcana: "Иерофант", description: "Вечные произведения, наполняющие смыслом." },
+        { name: "Драма", arcana: "Сила", description: "Глубокие переживания, испытания и борьба." },
+        { name: "Психологический триллер", arcana: "Луна", description: "Напряжённые события и загадки разума." }
+    ],
+    sadness: [
+        { name: "Романтическая проза", arcana: "Императрица", description: "Чувственные истории о любви и жизни." },
+        { name: "Исторический роман", arcana: "Император", description: "Путешествия во времени и судьбы людей." },
+        { name: "Детектив", arcana: "Правосудие", description: "Расследования, преступления и поиски истины." }
+    ],
+    inspiration: [
+        { name: "Научная фантастика", arcana: "Звезда", description: "Технологии будущего и великие открытия." },
+        { name: "Экшн", arcana: "Колесница", description: "Динамичные события, погони и схватки." },
+        { name: "Трагедия", arcana: "Смерть", description: "Сильные эмоции, неизбежные потери и катарсис." }
+    ],
+    tiredness: [
+        { name: "Готическая литература", arcana: "Дьявол", description: "Мрачные тайны, заброшенные замки и судьбы." },
+        { name: "Философский роман", arcana: "Отшельник", description: "Размышления о жизни, судьбе и смысле." },
+        { name: "Мистика", arcana: "Жрица", description: "Скрытые знания, предчувствия и судьбоносные знаки." }
+    ],
+    confusion: [
+        { name: "Юмор", arcana: "Солнце", description: "Забавные истории, поднимающие настроение." },
+        { name: "Сказка", arcana: "Колесо Фортуны", description: "Волшебные истории, где добро побеждает зло." },
+        { name: "Романтика", arcana: "Влюблённые", description: "Сердечные переживания, чувства и судьба." }
+    ]
+};
+
+// == Массив книг == //
+
+const books = [
+    {
+        genre: "Приключения",
+        tarot: "Дурак",
+        books: [
+            { title: "Тим Талер или Проданный смех", author: "Джеймс Крюс", link: "https://www.livelib.ru/book/1008965113-tim-taler-ili-prodannyj-smeh-dzhejms-kryus" },
+            { title: "Необыкновенные приключения Синего человека", author: "Луи Буссенар", link: "" },
+            { title: "Остров Погибших Кораблей", author: "Александр Беляев", link: "https://www.livelib.ru/book/1005721498-ostrov-pogibshih-korablej-aleksandr-belyaev" },
+            { title: "Посмертные записки Пиквикского клуба", author: "Чарльз Диккенс", link: "https://www.livelib.ru/book/1010032225-posmertnye-zapiski-pikvikskogo-kluba-charlz-dikkens" },
+            { title: "Лес повешенных лисиц", author: "Арто Паасилинна", link: "https://www.litres.ru/book/arto-paasilinna-2/les-poveshennyh-lisic-68024696/" }
+        ]
+    },
+    {
+        genre: "Фэнтези",
+        tarot: "Маг",
+        books: [
+            { title: "Отдел 15к", author: "Андрей Васильев", link: "" },
+            { title: "Профессиональный некромант", author: "Александра Лисина", link: "https://www.litres.ru/book/aleksandra-lisina/professionalnyy-nekromant-pentalogiya-v-odnom-tome-67769349/" },
+            { title: "Академия последнего шанса", author: "Александра Шервинская", link: "https://www.litres.ru/series/akademiya-poslednego-shansa-831019/?art_types=text_book" },
+            { title: "Адвокат вампира", author: "Елена Комарова, Юлия Луценко", link: "https://www.litres.ru/book/elena-komarova-32391450/advokat-vampira-68751342/" },
+            { title: "Джекаби", author: "Уильям Риттер", link: "https://www.litres.ru/book/uillyam-ritter/dzhekabi-23565844/" }
+        ]
+    },
+    {
+        genre: "Романтическая проза",
+        tarot: "Императрица",
+        books: [
+            { title: "Дом на краю ночи", author: "Кэтрин Бэннер", link: "https://www.litres.ru/book/ketrin-benner/dom-na-krau-nochi-24615144/" },
+            { title: "Ежевичная зима", author: "Сара Джио", link: "https://www.litres.ru/book/sara-dzhio/ezhevichnaya-zima-8494418/" },
+            { title: "Время гладить кошек", author: "Ринат Валиуллин", link: "https://www.litres.ru/book/rinat-valiullin/vremya-gladit-koshek-70759645/" },
+            { title: "Ожог от северного сияния", author: "Наталия Беззубенко", link: "https://www.litres.ru/book/nataliya-bezzubenko/ozhog-ot-severnogo-siyaniya-70184023/" },
+            { title: "Птифур. Шоколадное сердце кондитера", author: "Анна Муссен", link: "https://www.litres.ru/book/anna-mussen-18487531/ptifur-shokoladnoe-serdce-konditera-69325936/" }
+        ]
+    },
+    {
+        genre: "Классика",
+        tarot: "Иерофант",
+        books: [
+            { title: "Скорбь Сатаны", author: "Мария Корелли", link: "https://www.litres.ru/book/mariya-korelli/skorb-satany-42383431/" },
+            { title: "Чайка Джонатан Ливингстон", author: "Ричард Бах", link: "https://www.litres.ru/book/richard-bah/chayka-dzhonatan-livingston-39848905/" },
+            { title: "Мартин Иден", author: "Джек Лондон", link: "https://www.litres.ru/book/dzhek-london/martin-iden-119433/" },
+            { title: "Парфюмер. История одного убийцы", author: "Патрик Зюскинд", link: "https://www.litres.ru/book/patrik-zuskind/parfumer-istoriya-odnogo-ubiycy-134668/" },
+            { title: "Большие надежды", author: "Чарльз Диккенс", link: "" }
+        ]
+    },
+
+    {
+        genre: "Экшн",
+        tarot: "Колесница",
+        books: [
+            { title: "Дом лжи", author: "Дэвид Эллис", link: "https://www.litres.ru/book/devid-ellis/dom-lzhi-70254631/" },
+            { title: "Тринадцать", author: "Стив Кавана", link: "https://www.litres.ru/book/stiv-kavana/trinadcat-69030028/" },
+            { title: "Институт", author: "Стивен Кинг", link: "https://www.litres.ru/book/stiven-king/institut-51598283/" },
+            { title: "Безвозвратность", author: "Anne Dar", link: "https://www.litres.ru/book/anne-dar/bezvozvratnost-70920784/" },
+            { title: "Идеальный мир для социопата", author: "Олег Сапфир", link: "https://www.litres.ru/book/oleg-sapfir-32864530/idealnyy-mir-dlya-sociopata-71655337/" }
+        ]
+    },
+    {
+        genre: "Мистика",
+        tarot: "Жрица",
+        books: [
+            { title: "Пока течёт река", author: "Диана Сеттерфилд", link: "" },
+            { title: "Дом на болотах", author: "Зои Сомервилл", link: "https://www.litres.ru/book/zoi-somervill/dom-na-bolotah-70078456/" },
+            { title: "Избушка на краю омута", author: "Полина Луговцова", link: "https://www.litres.ru/book/polina-lugovcova/izbushka-na-krau-omuta-43437991/" },
+            { title: "Гретель и её бесы", author: "Герман Рыльский, Тамара Рыльская", link: "https://www.litres.ru/book/german-rylskiy/gretel-i-ee-besy-69162838/" },
+            { title: "История с кладбищем", author: "Нил Гейман", link: "https://www.litres.ru/book/nil-geyman/istoriya-s-kadbischem-650505/" }
+        ]
+    },
+    {
+        genre: "Исторический роман",
+        tarot: "Император",
+        books: [
+            { title: "Король зимы", author: "Бернард Корнуэлл", link: "https://www.litres.ru/book/bernard-kornuell/korol-zimy-139688/" },
+            { title: "Мария Стюарт", author: "Стефан Цвейг", link: "" },
+            { title: "Татуировщик из Освенцима", author: "Хезер Моррис", link: "" },
+            { title: "Княгиня Ольга. Невеста из чащи", author: "Елизавета Дворецкая", link: "https://www.litres.ru/book/elizaveta-dvoreckaya/knyaginya-olga-nevesta-iz-chaschi-11655424/" },
+            { title: "Столпы земли", author: "Кен Фоллетт", link: "https://www.litres.ru/book/ken-follett-2/stolpy-zemli-120560/" }
+        ]
+    },
+    {
+        genre: "Романтика",
+        tarot: "Влюблённые",
+        books: [
+            { title: "Слёзы чёрной вдовы", author: "Анастасия Логинова", link: "https://www.litres.ru/book/anastasiya-loginova-22307416/slezy-chernoy-vdovy-35254625/" },
+            { title: "Пока не закончатся звёзды", author: "Инма Рубиалес", link: "https://www.litres.ru/book/inma-rubiales-33242677/poka-ne-zakonchatsya-zvezdy-71343136/" },
+            { title: "Академия проклятий", author: "Елена Звёздная", link: "" },
+            { title: "Королёк – птичка певчая", author: "Решад Нури Гюнтекин", link: "https://www.litres.ru/book/reshad-nuri-guntekin/korolek-ptichka-pevchaya-137236/" },
+            { title: "Гамбит Королевы", author: "Элизабет Фримантл", link: "" }
+        ]
+    },
+    {
+        genre: "Драма",
+        tarot: "Сила",
+        books: [
+            { title: "Хроники странствующего кота", author: "Хиро Арикава", link: "https://www.livelib.ru/tag/%D0%B4%D1%80%D0%B0%D0%BC%D0%B0" },
+            { title: "Вероника решает умереть", author: "Пауло Коэльо", link: "https://www.livelib.ru/selection/863-sotsialnopsihologicheskie-dramy" },
+            { title: "Милые кости", author: "Элис Сиболд", link: "https://www.livelib.ru/selection/863-sotsialnopsihologicheskie-dramy" },
+            { title: "Всё закончится на нас", author: "Колин Гувер", link: "https://www.litres.ru/book/kolin-guver/vse-zakonchitsya-na-nas-54908589/" },
+            { title: "Одиночество Мередит", author: "Клэр Александер", link: "https://www.litres.ru/book/kler-aleksander/odinochestvo-meredit-70732636/" }
+        ]
+    },
+    {
+        genre: "Философский роман",
+        tarot: "Отшельник",
+        books: [
+            { title: "Час откровения", author: "Мюриель Барбери", link: "https://www.litres.ru/book/muriel-barberi/chas-otkroveniya-68910903/" },
+            { title: "Там, где растёт синий", author: "Юна Летц", link: "https://www.litres.ru/book/una-letc/tam-gde-rastet-siniy-6574102/" },
+            { title: "Молитва к звёздам", author: "Арина Зарудко", link: "https://www.litres.ru/book/arina-zarudko/molitva-k-zvezdam-64032861/" },
+            { title: "Волшебная гора", author: "Томас Манн", link: "https://www.litres.ru/book/tomas-mann/volshebnaya-gora-8600333/" },
+            { title: "О дивный новый мир", author: "Олдос Леонард Хаксли", link: "https://www.litres.ru/book/oldos-leonard-haksli/o-divnyy-novyy-mir-14332383/" }
+        ]
+    },
+    {
+        genre: "Сказка",
+        tarot: "Колесо Фортуны",
+        books: [
+            { title: "Страна сказок. За гранью сказки", author: "Крис Колфер", link: "https://www.livelib.ru/book/1002731347-strana-skazok-za-granyu-skazki-kris-kolfer" },
+            { title: "Страшные сказки с Чёрного корабля", author: "Крис Пристли", link: "https://www.livelib.ru/book/1007578921-strashnye-skazki-s-chjornogo-korablya-kris-pristli" },
+            { title: "Ходячий замок", author: "Диана Уинн Джонс", link: "https://www.litres.ru/book/diana-uinn-dzhons/hodyachiy-zamok-133804/" },
+            { title: "Ведьма Дивнозёрья", author: "Алан Чароит", link: "" },
+            { title: "Рождественский поросёнок", author: "Дж. К. Роулинг", link: "https://www.litres.ru/book/dzhoan-ketlin-rouling/rozhdestvenskiy-porosenok-66549392/" }
+        ]
+    },
+    {
+        genre: "Детектив",
+        tarot: "Правосудие",
+        books: [
+            { title: "Ледяная река", author: "Ариэль Лохен", link: "https://www.litres.ru/book/ariel-lohen/ledyanaya-reka-71274922/" },
+            { title: "Тайна Дома трёх вязов", author: "Валентен Мюссо", link: "https://www.litres.ru/book/valentin-musso/tayna-doma-treh-vyazov-71595916/" },
+            { title: "Опасная игра бабули. Руководство по раскрытию собственного убийства", author: "Кристен Перрин", link: "https://www.litres.ru/book/kristen-perrin/opasnaya-igra-babuli-rukovodstvo-po-raskrytiu-sobstvennogo-70990000/" },
+            { title: "Последнее дело Холмса", author: "Артуро Перес-Реверте", link: "https://www.litres.ru/book/arturo-peres-reverte/poslednee-delo-holmsa-70884097/" },
+            { title: "Наблюдатель", author: "Шарлотта Линк", link: "https://www.litres.ru/book/sharlotta-link/nabludatel-69958261/" }
+        ]
+    },
+    {
+        genre: "Хоррор",
+        tarot: "Повешенный",
+        books: [
+            { title: "Никто не уйдет живым", author: "Адам Нэвилл", link: "https://www.litres.ru/book/adam-nevill-2/nikto-ne-uydet-zhivym-51683354/" },
+            { title: "Зеркальная страна", author: "Кэрол Джонстон", link: "https://www.litres.ru/book/kerol-dzhonston/zerkalnaya-strana-67859586/" },
+            { title: "Воображаемый друг", author: "Стивен Чбоски", link: "https://www.litres.ru/book/stiven-chboski/voobrazhaemyy-drug-8738564/" },
+            { title: "Призрак в лунном свете", author: "Говард Филлипс Лавкрафт", link: "https://www.litres.ru/book/govard-lavkraft/prizrak-v-lunnom-svete-67698759/" },
+            { title: "Колыбельная", author: "Чак Паланик", link: "https://www.litres.ru/book/chak-palanik/kolybelnaya-139503/" }
+        ]
+    },
+    {
+        genre: "Трагедия",
+        tarot: "Смерть",
+        books: [
+            { title: "Запах стекла", author: "Джеймс Карден", link: "https://www.litres.ru/book/dzheyms-karden/zapah-stekla-71723581/" },
+            { title: "О дивный тленный мир. Когда смерть – дело жизни", author: "Хейли Кэмпбелл", link: "https://www.litres.ru/book/heyli-kempbell/o-divnyy-tlennyy-mir-kogda-smert-delo-zhizni-68958093/" },
+            { title: "Обреченный", author: "Чеченский Алекс", link: "https://www.litres.ru/book/rash-rashidovich-hadakan/obrechennyy-57329401/" },
+            { title: "Между виной и любовью", author: "Ирина Колин", link: "https://www.litres.ru/book/irina-kolin/mezhdu-vinoy-i-lubovu-70519159/" },
+            { title: "Ад бесконечных страданий", author: "Максим Ставрогин", link: "https://www.litres.ru/book/maksim-stavrogin-32448456/ad-beskonechnyh-stradaniy-68897043/" }
+        ]
+    },
+    {
+        genre: "Готическая литература",
+        tarot: "Дьявол",
+        books: [
+            { title: "Тень ветра", author: "Карлос Руис Сафон", link: "https://www.litres.ru/book/karlos-ruis-safon/ten-vetra-143699/" },
+            { title: "Ловец чудес", author: "Рита Хоффман", link: "https://www.litres.ru/book/rita-hoffman/lovec-chudes-70619998/" },
+            { title: "Мемуары Дьявола", author: "Фредерик Сулье", link: "https://www.litres.ru/book/frederik-sule/memuary-dyavola-68686944/" },
+            { title: "Книга Готель", author: "Мэри МакМайн", link: "https://www.litres.ru/book/meri-makmayn/kniga-gotel-70642273/" },
+            { title: "Мастер и Маргарита", author: "Михаил Булгаков", link: "https://www.litres.ru/book/mihail-bulgakov/master-i-margarita-illustrirovannoe-izdanie-24434994/" }
+        ]
+    },
+    {
+        genre: "Научная фантастика",
+        tarot: "Звезда",
+        books: [
+            { title: "Тропой человека", author: "Ник Ричмонд", link: "https://www.litres.ru/book/nik-richmond/tropoy-cheloveka-70951555/" },
+            { title: "Цветы для Элджернона", author: "Дэниел Киз", link: "https://www.litres.ru/book/deniel-kiz/cvety-dlya-eldzhernona-145410/" },
+            { title: "Пикник на обочине", author: "Аркадий и Борис Стругацкие", link: "https://www.litres.ru/book/arkadiy-i-boris-strugackie/piknik-na-obochine-127607/" },
+            { title: "Николас Эймерик, инквизитор", author: "Валерио Эванджелисти", link: "https://www.litres.ru/book/valerio-evandzhelisti/nikolas-eymerik-inkvizitor-71382556/" },
+            { title: "Новый Вавилон", author: "Мишель Бюсси", link: "https://www.litres.ru/book/mishel-bussi/novyy-vavilon-71199055/" }
+        ]
+    },
+
+    {
+        genre: "Психологический триллер",
+        tarot: "Луна",
+        books: [
+            { title: "За спиной", author: "Майк Омер", link: "https://www.litres.ru/book/mayk-omer/za-spinoy-71603914/" },
+            { title: "Утес чайки", author: "Шарлотта Линк", link: "https://www.litres.ru/book/sharlotta-link/utes-chayki-71335276/" },
+            { title: "Одиннадцать подснежников", author: "Ребекка Дзанетти", link: "https://www.litres.ru/book/rebekka-dzanetti/odinnadcat-podsnezhnikov-69576184/" },
+            { title: "А затем она исчезла", author: "Клэр Дуглас", link: "https://www.litres.ru/book/kler-duglas/a-zatem-ona-ischezla-71087953/" },
+            { title: "Последний пассажир", author: "Уилл Дин", link: "https://www.litres.ru/book/uill-din/posledniy-passazhir-71272687/" }
+        ]
+    },
+    {
+        genre: "Юмор / Оптимистичная проза",
+        tarot: "Солнце",
+        books: [
+            { title: "Мужики воскресают по вторникам", author: "Кристина Агатова", link: "https://www.litres.ru/book/kristina-agatova/muzhiki-voskresaut-po-vtornikam-67969005/" },
+            { title: "Тяготы домохозяйства", author: "Александр Райн", link: "https://www.litres.ru/book/aleksandr-rayn/tyagoty-domohozyaystva-67823327/" },
+            { title: "Полный сантехник", author: "Слава Сэ", link: "https://www.litres.ru/book/slava-se/polnyy-santehnik-39454955/" },
+            { title: "Ещё тридцать восемь кошек до сорока", author: "Ольга Назарова", link: "https://www.litres.ru/book/olga-stanislavovna-nazarova/esche-tridcat-vosem-koshek-do-soroka-68944857/" },
+            { title: "Другой Холмс, или Великий сыщик глазами очевидцев. Начало", author: "Евгений Бочковский", link: "https://www.litres.ru/book/evgeniy-bochkovskiy/drugoy-holms-ili-velikiy-syschik-glazami-ochevidcev-na-49790050/" }
+        ]
+    }
+
+
+];
+
+
+// Игры
+const games = [
+    { title: "Таро-квест", link: "#" },
+    { title: "Игра в судьбу", link: "#" },
+    { title: "Загадка книг", link: "#" },
+    { title: "Тень прошлого", link: "#" },
+    { title: "Книжное предсказание", link: "#" }
+];
+
+// === ВЫБОР ЭМОЦИИ ===
+document.querySelectorAll(".features").forEach(button => {
+    button.addEventListener("click", function () {
+        const mood = this.getAttribute("data-mood");
+        const selectedMoodTag = mood.toLowerCase();
+        localStorage.setItem("selectedMood", selectedMoodTag);
+
+        // Переход к выбору чтения/игры
+        document.querySelector(".showcase").style.display = "none";
+        document.querySelector("#choiceScreen").style.display = "block";
+    });
+});
+
+// === ВЫБОР "ЧИТАТЬ" ===
+document.getElementById("btnRead").addEventListener("click", function () {
+    document.querySelector("#choiceScreen").style.display = "none";
+    document.querySelector("#genreOrFateScreen").style.display = "block";
+});
+
+// === ВЫБОР ЖАНРА ===
+document.getElementById("btnChooseGenre").addEventListener("click", function () {
+    const selectedMoodTag = localStorage.getItem("selectedMood");
+    const availableGenres = genres[selectedMoodTag];
+
+    document.querySelector("#genre1").innerText = availableGenres[0];
+    document.querySelector("#genre2").innerText = availableGenres[1];
+    document.querySelector("#genre3").innerText = availableGenres[2];
+
+    document.querySelector("#genreOrFateScreen").style.display = "none";
+    document.querySelector("#genreSelectionScreen").style.display = "block";
+});
+
+// === ВЫБОР КОНКРЕТНОГО ЖАНРА ===
+document.querySelectorAll(".card-genre").forEach(card => {
+    card.addEventListener("click", function () {
+        const selectedGenre = this.innerText;
+        localStorage.setItem("selectedGenre", selectedGenre);
+
+        document.querySelector("#genreSelectionScreen").style.display = "none";
+        document.querySelector("#booksScreen").style.display = "block";
+        displayBooks(selectedGenre);
+    });
+});
+
+// === СЛУЧАЙНЫЙ ВЫБОР ЖАНРА ===
+document.getElementById("btnRandomGenre").addEventListener("click", function () {
+    const selectedMoodTag = localStorage.getItem("selectedMood");
+    const availableGenres = genres[selectedMoodTag];
+    const randomGenre = availableGenres[Math.floor(Math.random() * availableGenres.length)];
+
+    localStorage.setItem("selectedGenre", randomGenre);
+
+    document.querySelector("#magicMirrorScreen").style.display = "none";
+    document.querySelector("#booksScreen").style.display = "block";
+    displayBooks(randomGenre);
+});
+
+// === ОТОБРАЖЕНИЕ КНИГ ===
+function displayBooks(genreName) {
+    const selectedGenre = books.find(g => g.genre === genreName);
+    if (!selectedGenre) return;
+
+    const booksContainer = document.getElementById("booksContainer");
+    booksContainer.innerHTML = "";
+
+    selectedGenre.books.forEach(book => {
+        const bookCard = document.createElement("div");
+        bookCard.classList.add("book-card");
+        bookCard.innerHTML = `
+            <h3>${book.title}</h3>
+            <p>${book.author}</p>
+            <a href="${book.link}" target="_blank">Читать эту книгу</a>
+        `;
+        booksContainer.appendChild(bookCard);
+    });
+}
+
+// === ВЫБОР "ИГРАТЬ" ===
+document.getElementById("btnPlay").addEventListener("click", function () {
+    document.querySelector("#choiceScreen").style.display = "none";
+    document.querySelector("#gamesScreen").style.display = "block";
+    displayGames();
+});
+
+// === ОТОБРАЖЕНИЕ ИГР ===
+function displayGames() {
+    const gamesContainer = document.getElementById("gamesContainer");
+    gamesContainer.innerHTML = "";
+
+    games.forEach(game => {
+        const gameCard = document.createElement("div");
+        gameCard.classList.add("game-card");
+        gameCard.innerHTML = `
+            <h3>${game.title}</h3>
+            <a href="${game.link}">Играть</a>
+        `;
+        gamesContainer.appendChild(gameCard);
+    });
+}
+
+// === НАВИГАЦИЯ МЕЖДУ СТРАНИЦАМИ ===
+document.querySelectorAll(".btn-back").forEach(button => {
+    button.addEventListener("click", function () {
+        const targetScreen = this.getAttribute("data-target");
+        document.querySelectorAll(".screen").forEach(screen => screen.style.display = "none");
+        document.querySelector(`#${targetScreen}`).style.display = "block";
+    });
+});
 
 
 
