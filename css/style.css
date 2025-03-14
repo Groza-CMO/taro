@@ -248,8 +248,8 @@ background: transparent;
 }
 
 .zoom-container.fullscreen {
-  width: 50vw;
-  height: 50vh;
+  width: 40vw;
+  height: 40vh;
   left: 25.5%;
   bottom: 50%;
   margin: auto;
