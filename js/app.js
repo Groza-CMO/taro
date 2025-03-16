@@ -27,44 +27,8 @@
   
 // }
 
-//облачка
-// let scrollValue = 0;
-// const maxScroll = 200; // Лимит скролла
-// const minScale = 1; // Начальный масштаб
-// const maxScale = 1.5; // Максимальный масштаб
-// const background = document.querySelector(".room");
-// const body = document.body;
 
-// // Облака
-// const cloudLeftTop = document.querySelector(".cloud-left-top");
-// const cloudRightTop = document.querySelector(".cloud-right-top");
-// const cloudLeftBottom = document.querySelector(".cloud-left-bottom");
-// const cloudRightBottom = document.querySelector(".cloud-right-bottom");
 
-// window.addEventListener("wheel", (e) => {
-//     scrollValue += e.deltaY * 0.03;
-//     scrollValue = Math.max(0, Math.min(maxScroll, scrollValue)); // Ограничение скролла
-
-//     let shiftX = (scrollValue / maxScroll) * 100; // Смещение облаков по X
-//     let shiftY = (scrollValue / maxScroll) * 50; // Смещение облаков по Y
-//     let scale = minScale + (scrollValue / maxScroll) * (maxScale - minScale); // Масштабирование фона
-
-//     // 🌫️ Двигаем облака
-//     cloudLeftTop.style.transform = `translateX(-${shiftX}vw) translateY(-${shiftY}vh)`;
-//     cloudRightTop.style.transform = `translateX(${shiftX}vw) translateY(-${shiftY}vh)`;
-//     cloudLeftBottom.style.transform = `translateX(-${shiftX}vw) translateY(${shiftY}vh)`;
-//     cloudRightBottom.style.transform = `translateX(${shiftX}vw) translateY(${shiftY}vh)`;
-
-//     // 🎇 Масштабируем фон
-//     background.style.transform = `scale(${scale})`;
-
-//     // 🌑 Управляем затемнением
-//     if (scrollValue > 80) {
-//         body.classList.add("scrolled"); // Затемнение уходит
-//     } else {
-//         body.classList.remove("scrolled");
-//     }
-// });
 
 let scrollValue = 0;
 const maxScroll = 300;
@@ -78,24 +42,103 @@ const mball = document.querySelector(".mball");
 const tablet = document.querySelector(".tablet");
 const clouds = document.querySelector(".clouds");
 const frm = document.querySelector(".frm");
+const darkOverlay = document.querySelector(".dark-overlay");
 
 const cloudLeftTop = document.querySelector(".cloud-left-top");
 const cloudRightTop = document.querySelector(".cloud-right-top");
 const cloudLeftBottom = document.querySelector(".cloud-left-bottom");
 const cloudRightBottom = document.querySelector(".cloud-right-bottom");
 
-let isTransitioning = false;
 
+const stepSound = new Audio("https://res.cloudinary.com/dtawhdjlp/video/upload/v1742077416/audios/Shag_erveqa.mp3");
+stepSound.volume = 0.6;
+stepSound.preload = "auto";
+
+let soundEnabled = false;
+let isLightOn = false;
+let isTransitioning = false;
+let isScrolling = false;
+let stepProgress = 0;
+let lastStepTime = 0;
+
+const magicBall = document.querySelector(".mball-container");
+const clickHint = document.querySelector(".click-hint");
+
+// 🔦 Фонарь мягко следует за курсором
+document.addEventListener("mousemove", (e) => {
+    if (!isLightOn) {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        requestAnimationFrame(() => {
+            darkOverlay.style.maskImage = `radial-gradient(circle 6rem at ${x}px ${y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%)`;
+            darkOverlay.style.webkitMaskImage = `radial-gradient(circle 6rem at ${x}px ${y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%)`;
+        });
+    }
+});
+
+// 🔮 Нажатие на магический шар включает свет
+magicBall.addEventListener("click", () => {
+    if (!soundEnabled) {
+        stepSound.play().catch(() => {});
+        stepSound.pause();
+        soundEnabled = true;
+
+        clickHint.textContent = "Иди вперёд (скролл)";
+        document.querySelector(".mball").style.animation = "none";
+
+        darkOverlay.classList.remove("light-off");
+        darkOverlay.classList.add("light-on");
+        isLightOn = true;
+    }
+});
+
+// 📜 Скролл → убираем текст мгновенно
+window.addEventListener("wheel", () => {
+    if (soundEnabled) {
+        clickHint.style.opacity = "0";
+        clickHint.style.visibility = "hidden";
+    }
+});
+
+// 🦶 Плавные шаги + звук (БЕЗ ЗАЛИПАНИЯ!)
+function animateStep() {
+    if (!isScrolling || scrollValue >= maxScroll * 0.8) return;
+
+    stepProgress += 0.08;
+    let stepOffset = Math.sin(stepProgress) * 4;
+    background.style.transform = `translateY(${stepOffset}px) scale(${minScale + (scrollValue / maxScroll) * (maxScale - minScale)})`;
+
+    let now = Date.now();
+    if (soundEnabled && now - lastStepTime > 400) {
+        stepSound.currentTime = 0;
+        stepSound.play();
+        lastStepTime = now;
+    }
+
+    requestAnimationFrame(animateStep);
+}
+
+// 📜 Основной скролл (ВОЗВРАЩАЕМ ОБЛАКА!)
 window.addEventListener("wheel", (e) => {
     if (isTransitioning) return;
 
-    scrollValue += e.deltaY * 0.01;
+    isScrolling = true;
+    setTimeout(() => { isScrolling = false; }, 200);
+
+    scrollValue += e.deltaY * 0.03;
     scrollValue = Math.max(0, Math.min(maxScroll, scrollValue));
 
     let scale = minScale + (scrollValue / maxScroll) * (maxScale - minScale);
-    background.style.transform = `scale(${scale})`;
 
-    // Открытие окна и приближение портала (80% пути)
+    if (scrollValue < maxScroll * 0.8) {
+        requestAnimationFrame(animateStep);
+    } else {
+        stepProgress = 0;
+        background.style.transform = `scale(${scale})`;
+    }
+
+    // 📌 Окно и портал (80%)
     if (scrollValue > maxScroll * 0.8) {
         windowElement.classList.add("opened");
         zoomContainer.classList.add("opened");
@@ -104,64 +147,66 @@ window.addEventListener("wheel", (e) => {
         zoomContainer.classList.remove("opened");
     }
 
-    // Исчезновение объектов, появление fullscreen портала (85% пути)
+    // 🔮 Исчезновение объектов (85%)
     if (scrollValue > maxScroll * 0.85) {
         mball.style.opacity = "0";
         tablet.style.opacity = "0";
         windowElement.style.opacity = "0";
-        zoomContainer.classList.add("fullscreen");
     } else {
         mball.style.opacity = "1";
         tablet.style.opacity = "1";
         windowElement.style.opacity = "1";
-        zoomContainer.classList.remove("fullscreen");
     }
 
-    // Облака начинают разъезжаться только после открытия створок
-    if (scrollValue > maxScroll * 0.85) {
+    // ☁️ **ОБЛАКА СНОВА РАЗЪЕЗЖАЮТСЯ**
+    if (scrollValue > maxScroll * 0.8) {
         let shiftX = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 100;
         let shiftY = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 50;
 
         cloudLeftTop.style.transform = `translateX(-${shiftX}vw) translateY(-${shiftY}vh)`;
         cloudRightTop.style.transform = `translateX(${shiftX}vw) translateY(-${shiftY}vh)`;
-        cloudLeftBottom.style.transform = `translateX(-${shiftX}vw) translateY(${shiftY}vh)`;
-        cloudRightBottom.style.transform = `translateX(${shiftX}vw) translateY(${shiftY}vh)`;
+        cloudLeftBottom.style.transform = `translateX(-${shiftX}vw) translateY(${shiftY * 1.5}vh)`;
+        cloudRightBottom.style.transform = `translateX(${shiftX}vw) translateY(${shiftY * 1.5}vh)`;
     }
 
-    // 🌙 Луна уходит вверх ПОСТЕПЕННО, начиная с 85%
+    // 🌙 Луна уходит вверх (85%)
     if (scrollValue > maxScroll * 0.85) {
-        let moonShift = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 150;
+        let moonShift = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 120;
         zoomContainer.style.transform = `translateY(-${moonShift}%)`;
 
-        // 🔥 Плавное исчезновение `room`
         let roomOpacity = 1 - (scrollValue - maxScroll * 0.85) / (maxScroll * 0.15);
         background.style.opacity = roomOpacity;
-    } else {
-        zoomContainer.style.transform = `translateY(0)`;
-        background.style.opacity = "1";
+    }
+
+    // 🌫 **ОБЛАКА ПАДАЮТ ВНИЗ (95%)**
+    if (scrollValue > maxScroll * 0.95) {
+        let fallShift = ((scrollValue - maxScroll * 0.95) / (maxScroll * 0.05)) * 100;
+        cloudLeftTop.style.transform = `translateY(${fallShift}vh)`;
+        cloudRightTop.style.transform = `translateY(${fallShift}vh)`;
+        cloudLeftBottom.style.transform = `translateY(${fallShift}vh)`;
+        cloudRightBottom.style.transform = `translateY(${fallShift}vh)`;
     }
 
     // 🌀 Когда луна ушла, `frm` плавно появляется
     if (scrollValue >= maxScroll) {
         isTransitioning = true;
 
-        // 🌓 Уводим луну ВНЕ экрана
-        zoomContainer.style.transition = "transform 2s ease-out, opacity 2s ease-in-out";
-        zoomContainer.style.transform = "translateY(-200%)";
-        zoomContainer.style.opacity = "0";
+        zoomContainer.style.transition = "transform 2s ease-out";
+        zoomContainer.style.transform = "translateY(-250%)";
 
-        // 🏚️ Затемняем комнату
-        background.style.transition = "opacity 2s ease-in-out";
-        background.classList.add("hidden");
+        frm.style.transition = "transform 1.8s ease-in-out, opacity 1.5s ease-in-out";
+        frm.classList.add("active");
 
-        // 🔥 Поднимаем `.frm`
+        // ☁️ **Облака уезжают вниз полностью**
+        clouds.style.transition = "transform 2.5s ease-in-out, opacity 1.5s ease-in-out";
+        clouds.style.transform = "translateY(100vh)";
+
         setTimeout(() => {
-            frm.classList.add("active"); // ✅ Делаем кликабельным
+            background.classList.add("hidden");
             isTransitioning = false;
-        }, 800);
+        }, 1500);
     }
 });
-
 
 
 // === СВЕТЛЯЧКИ ===

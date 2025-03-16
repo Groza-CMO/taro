@@ -49,8 +49,7 @@ body{
 width: 100vw;
 height: 100vh;
 background: radial-gradient(ellipse at bottom, var(--tertiary) 0%, #090a0f 80%);
-margin: auto;
-padding: 0;
+object-fit: contain;
 overflow: hidden;
 }
 
@@ -126,11 +125,40 @@ line-height: normal;
 
 /* Первый экран */
 
+*,
+*screen1 {
+box-sizing: border-box;
+}
+
 .screen1{
 width: 100vw;
 height: 100vh;
-background: transparent;
+margin: 0;
+padding: 0;
+object-fit: contain;
+overflow: hidden;
 }
+
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 1); /* Почти чёрный */
+  pointer-events: none;
+  transition: background 1s ease-out;
+  mask-image: radial-gradient(circle 8rem at 70% 70%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
+  -webkit-mask-image: radial-gradient(circle 8rem at 70% 70%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
+  z-index: 20;
+}
+
+.dark-overlay.light-on {
+  background: rgba(0, 0, 0, 0);
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
 
 .room {
   position: absolute;
@@ -147,7 +175,7 @@ background: transparent;
 
 .room.hidden {
   opacity: 0;
-  pointer-events: none; /* 🚫 Полностью убираем клики */
+  pointer-events: none; 
 }
 
 .window {
@@ -162,28 +190,30 @@ background: transparent;
 
 .curtains{
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: url("https://i.postimg.cc/bJ04gjyH/Main-page.png") center/cover no-repeat;
+  width: 100vw;
+  height: 100vh;
+  background: url("https://i.postimg.cc/kGRGj3VJ/Main-page2.png") center/cover no-repeat;
   z-index: 7;
+  margin: 0;
+  padding: 0;
 }
 
 .sash_rame{
   position: absolute;
-  width: 45%;
+  width: 42%;
   height: 100%;
   background: url("https://i.postimg.cc/4xK4HNCq/rame.png") center/contain no-repeat;
-  top: -15%;
-  left: 30%;
+  top: -18%;
+  left: 25%;
   
 }
 .sash_left {
   position: absolute;
   width: 42%;
-  height: 62%;
+  height: 58%;
   background: url("https://i.postimg.cc/FsCsKk60/sashleft.png") center/contain no-repeat;
-  top: 3.5%;
-  left: 26.3%;
+  top: 2.5%;
+  left: 20.1%;
   transform-origin: left center; /* Точка поворота */
   transform: rotateY(0deg);
   transition: transform 1.2s ease-out;
@@ -192,10 +222,10 @@ background: transparent;
 .sash_right {
   position: absolute;
   width: 42%;
-  height: 62%;
+  height: 58%;
   background: url("https://i.postimg.cc/7YZZDnKx/sashright.png") center/contain no-repeat;
-  top: 3.5%;
-  right: 21.2%;
+  top: 2.5%;
+  right: 28%;
   transform-origin: right center; /* Точка поворота */
   transform: rotateY(0deg);
   transition: transform 1.2s ease-out;
@@ -222,41 +252,68 @@ background: transparent;
     transition: transform 0.2s ease-out; 
   }
 
-  .mball{
+  .mball-container {
     position: absolute;
+    top: 58%;
+    left: 77.5%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9;
+}
+
+
+.mball {
     width: 10vw;
     height: 10vw;
     background: url("https://i.postimg.cc/0Nm1h5wg/magicball.png") center/contain no-repeat;
     z-index: 9;
-    top: 53%;
-    left: 72.3%;
-    transition: transform 0.2s ease-out; 
-  }
+    filter: drop-shadow(0px 0px 15px rgba(164, 91, 255, 0.8)); /* ✨ Светится сразу */
+    animation: pulse 3s infinite ease-in-out;
+}
+
+/* Эффект пульсации шара */
+@keyframes pulse {
+    0% { transform: scale(1); filter: drop-shadow(0px 0px 10px rgba(164, 91, 255, 0.6)); }
+    50% { transform: scale(.99); filter: drop-shadow(0px 0px 20px rgba(164, 91, 255, 1)); }
+    100% { transform: scale(1); filter: drop-shadow(0px 0px 10px rgba(164, 91, 255, 0.6)); }
+}
+
+/* Текст подсказки */
+.click-hint {
+  font-size: 1.1vw;
+  font-weight: medium;
+  font-family: var(--font-primary);
+  background: var(--quaternary);
+  padding: 10px 30px;
+  border-radius: 12px;
+  color: var(--text);
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+  animation: blink 1.2s infinite alternate;
+  transition: opacity 0.5s ease-out;
+}
+
+/* ✨ Мигание текста */
+@keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0.9; }
+}
 
 /*  Фон за окном */
 .zoom-container {
   position: absolute;
   width: 30vw;
   height: 30vh;
-  left: 37%;
-  top: 20%;
+  left: 32%;
+  top: 16%;
   background: url('https://i.postimg.cc/t44YbS05/moon.png') center/contain no-repeat;
   overflow: hidden;
   z-index: 2;
-  transform-origin: center; /* 🔥 Теперь масштабирование относительно центра */
+  transform-origin: center;
   transition: transform 2s ease-in-out, top 2s ease-in-out;
 }
-
-.zoom-container.fullscreen {
-  width: 40vw;
-  height: 40vh;
-  left: 25.5%;
-  bottom: 50%;
-  margin: auto;
-  transform-origin: center; /* 🔥 Оставляем центр масштабирования */
-}
-
-
 
 .mball, .tablet, .window {
   transition: opacity .5s ease-out;
@@ -285,15 +342,39 @@ background: transparent;
 .cloud-left-bottom { top: 40%; left: 27%; animation: cloudLeft 5s ease-in-out infinite alternate; }
 .cloud-right-bottom { top: 38%; right: 35%; animation: cloudRight 6s ease-in-out infinite alternate; }
 
-@keyframes cloudLeft {
-  0% { opacity: 1; }
-  100% { opacity: 0.6; }
+.mist-container {
+  position: absolute;
+  bottom: 0;
+  width: 120%;
+  height: 40vh;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.5;
+  transition: opacity 1s ease-in-out;
+  left: -10%; /* Чтоб не было резких обрезов */
+  mask-image: linear-gradient(to top, transparent, rgba(0,0,0,1) 40%, rgba(0,0,0,1) 60%, transparent);
+  z-index: 10;
 }
 
-@keyframes cloudRight {
-  0% { opacity: 0.6; }
-  100% { opacity: 1; }
+.mist-layer {
+  position: absolute;
+  width: 500%; /* Увеличиваем ширину, чтобы избежать видимых швов */
+  height: 100%;
+  background: url("https://i.postimg.cc/bJHgyPk7/cloud-PNG7-9-68.png") repeat-x;
+  opacity: 0.6;
+  filter: blur(8px); /* Размываем границы */
+  animation: mistMove 20s linear infinite;
 }
+
+.mist-layer1 { top: 0; animation-duration: 25s; opacity: 0.4; }
+.mist-layer2 { top: 10%; animation-duration: 30s; opacity: 0.5; }
+.mist-layer3 { top: 20%; animation-duration: 35s; opacity: 0.6; }
+
+@keyframes mistMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-5%); } /* Уменьшаем сдвиг, чтобы туман шёл плавнее */
+}
+
 
 /* ✨ Светлячки */
 .firefly {
@@ -309,20 +390,22 @@ background: transparent;
 }
 
 
-
-
-*,
-*frm {
-box-sizing: border-box;
+@keyframes cloudLeft {
+  0% { opacity: 1; }
+  100% { opacity: 0.6; }
 }
+
+@keyframes cloudRight {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+
+
 
 .frm{
 width: 100vw;
 height: 100vh;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
 overflow: hidden;
 object-fit: contain;
 background: transparent;
@@ -344,21 +427,28 @@ z-index: 100;
   
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 4rem;
-  
-  
- 
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 3rem;
+  position: absolute;
+  z-index: 2;
+  top: 60%;
+  left: 21%;
+  border-radius: 1.875rem;
+  background: rgba(37, 8, 65, 0.664);
+  backdrop-filter: blur(25px);
+  padding: 2rem 8rem 3rem 8rem;
+  border: 1px solid #726AB4;
+
 }
 
 .txt{
   width: 40vw;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
-  padding-left: 10%;
   gap: 1.5rem;
 }
 
@@ -371,12 +461,11 @@ z-index: 100;
   height: 6vh;
   min-height: 30px;
   padding: 0rem 3rem;
-  margin: 0 0 5rem 10%;
   justify-content: center;
   align-items: center;
   border: none;
   border-radius: 0.5rem;
-  background: #706AB3;
+  background: var(--quaternary);
   color: #F3F3F3;
   text-align: center;
   font-family: "SF UI Display";
@@ -404,12 +493,15 @@ object-fit: contain;
 overflow: hidden;
 align-content: stretch;
 padding-right: 1rem;
-padding-top: 5%;
+padding-top: .1%;
+position: absolute;
+left: 24%;
 }
 
 .dama{
 width: 50vw;
 height: auto;
+
 
 
 }
@@ -1063,24 +1155,6 @@ left: -4%;
              floatUpDown 6s ease-in-out infinite;
 }
 
-/* .astro {
-  width: 80vw;
-  height: 80vh;
-  bottom: -40%;
-  right: 12%;
-   opacity: 0.4; 
-  z-index: -2;
-  position: absolute;
-  animation: glow 4s infinite ease-in-out, rotate 80s infinite linear;
-  
-} */
-
-/* .astro svg{
-  clip-path: none;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-} */
 
 /* Четвёртый экран */
 
