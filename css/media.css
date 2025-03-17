@@ -1,0 +1,210 @@
+@media (max-width: 1199px) {
+    .room {
+      display: none;
+    }
+  
+    .frm {
+      display: block;
+    }
+
+    .card-main{
+        width: 100%;
+        object-fit: contain;
+        overflow: hidden;
+        align-content: stretch;
+        padding-top: .1%;
+        position: absolute;
+        }
+        
+        .dama{
+        width: 70%;
+        height: auto;
+        margin-left: calc(30%/2);
+        
+        }
+  }
+
+  @media (max-width: 960px) {
+    .card-main{
+        width: 100%;
+        object-fit: contain;
+        overflow: hidden;
+        align-content: stretch;
+        padding-top: .1%;
+        position: absolute;
+        }
+        
+        .dama{
+        width: 100%;
+        height: auto;
+        margin-left: calc(10%/2);
+        
+        }
+  }
+
+  @media (max-width: 640px) {
+    .card-main{
+        width: 100%;
+        object-fit: contain;
+        overflow: hidden;
+        align-content: stretch;
+        top: 10%;
+        position: absolute;
+        }
+        
+        .dama{
+        width: 100%;
+        height: auto;
+        left: -2%;
+        }
+
+        .contentcont{
+        gap: 1rem;
+        padding: 1rem 4rem 2rem 4rem;
+        bottom: 10%;
+        border-radius: 24px;
+        }
+  }
+
+  @media (max-width: 600px) {
+    .card-main{
+        width: 100%;
+        object-fit: contain;
+        overflow: hidden;
+        align-content: stretch;
+        top: 15%;
+        position: absolute;
+        }
+        
+        .dama{
+        width: 100%;
+        height: auto;
+        left: -2%;
+        }
+
+        .contentcont{
+        gap: 1rem;
+        padding: 1rem 4rem 2rem 4rem;
+        bottom: 20%;
+        border-radius: 24px;
+        }
+  }
+
+  @media (max-width: 480px) {
+    .card-main{
+        width: 100%;
+        object-fit: contain;
+        overflow: hidden;
+        align-content: stretch;
+        top: 15%;
+        position: absolute;
+        }
+        
+        .dama{
+        width: 100%;
+        height: auto;
+        left: -2%;
+        }
+
+        .contentcont{
+        gap: 1rem;
+        padding: 1rem 2rem 2rem 2rem;
+        bottom: 25%;
+        border-radius: 24px;
+        }
+  }
+
+  @media (max-width: 360px) {
+    .card-main{
+        width: 100%;
+        object-fit: contain;
+        overflow: hidden;
+        align-content: stretch;
+        top: 15%;
+        position: absolute;
+        }
+        
+        .dama{
+        width: 100%;
+        height: auto;
+        left: -2%;
+        }
+
+        .contentcont{
+        gap: 1rem;
+        padding: .5rem 1rem .5rem 1rem;
+        bottom: 35%;
+        border-radius: 24px;
+        }
+  }
+
+  /* Второй экран */
+
+  @media (max-width: 480px) {
+   
+    .showtitle{
+       white-space: wrap;
+      }
+
+      .popup-wrapper{
+    width: 98vw;
+      } 
+
+      #popup-title{
+      font-size: 20px;
+      padding-bottom: 20px;
+      }
+
+      #popup-text1, #popup-text2{
+        font-size: 12px;
+        line-height: 110%;
+        gap: 10px;
+        
+      }
+      
+      .features{
+        border-radius: 12px;
+        padding: .5rem 1rem;
+      }
+      
+  }
+
+    /* Третий экран */
+
+    @media (max-width: 1200px) {
+   
+  #btnRead, #btnPlay, #btnChooseGenre, #btnRandomGenre {
+    display: flex;
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-height: 3rem;
+    padding: 1rem;
+    border-radius: 24px;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-style: medium;
+    font-weight: 500;
+    line-height: 120%;
+    
+    }
+
+    #choiceScreen h1{
+    white-space: wrap;
+    }
+    
+      }
+
+      @media (max-width: 640px) {
+   
+        .btncont{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+          }
+          
+            }

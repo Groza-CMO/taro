@@ -27,16 +27,12 @@
   
 // }
 
-
-
-
 let scrollValue = 0;
 const maxScroll = 300;
 const minScale = 1;
 const maxScale = 1.7;
 
 const background = document.querySelector(".room");
-const windowElement = document.querySelector(".window");
 const zoomContainer = document.querySelector(".zoom-container");
 const mball = document.querySelector(".mball");
 const tablet = document.querySelector(".tablet");
@@ -49,7 +45,6 @@ const cloudRightTop = document.querySelector(".cloud-right-top");
 const cloudLeftBottom = document.querySelector(".cloud-left-bottom");
 const cloudRightBottom = document.querySelector(".cloud-right-bottom");
 
-
 const stepSound = new Audio("https://res.cloudinary.com/dtawhdjlp/video/upload/v1742077416/audios/Shag_erveqa.mp3");
 stepSound.volume = 0.6;
 stepSound.preload = "auto";
@@ -60,13 +55,35 @@ let isTransitioning = false;
 let isScrolling = false;
 let stepProgress = 0;
 let lastStepTime = 0;
+let frmAppeared = false; 
 
 const magicBall = document.querySelector(".mball-container");
 const clickHint = document.querySelector(".click-hint");
 
-// 🔦 Фонарь мягко следует за курсором
+// 🚀 Проверяем размер экрана
+function checkScreenSize() {
+    if (window.innerWidth < 1200) {
+        background.style.display = "none";
+        frm.style.display = "block";
+        frm.style.opacity = "1";
+        frm.style.transform = "translateY(0)";
+        darkOverlay.style.display = "none"; 
+        frmAppeared = true;
+    } else {
+        background.style.display = "block";
+        frm.style.display = "none";
+        darkOverlay.style.display = "block"; 
+        frmAppeared = false;
+    }
+}
+
+
+window.addEventListener("load", checkScreenSize);
+window.addEventListener("resize", checkScreenSize);
+
+
 document.addEventListener("mousemove", (e) => {
-    if (!isLightOn) {
+    if (!isLightOn && window.innerWidth >= 1200) {
         let x = e.clientX;
         let y = e.clientY;
 
@@ -77,7 +94,7 @@ document.addEventListener("mousemove", (e) => {
     }
 });
 
-// 🔮 Нажатие на магический шар включает свет
+
 magicBall.addEventListener("click", () => {
     if (!soundEnabled) {
         stepSound.play().catch(() => {});
@@ -93,35 +110,9 @@ magicBall.addEventListener("click", () => {
     }
 });
 
-// 📜 Скролл → убираем текст мгновенно
-window.addEventListener("wheel", () => {
-    if (soundEnabled) {
-        clickHint.style.opacity = "0";
-        clickHint.style.visibility = "hidden";
-    }
-});
 
-// 🦶 Плавные шаги + звук (БЕЗ ЗАЛИПАНИЯ!)
-function animateStep() {
-    if (!isScrolling || scrollValue >= maxScroll * 0.8) return;
-
-    stepProgress += 0.08;
-    let stepOffset = Math.sin(stepProgress) * 4;
-    background.style.transform = `translateY(${stepOffset}px) scale(${minScale + (scrollValue / maxScroll) * (maxScale - minScale)})`;
-
-    let now = Date.now();
-    if (soundEnabled && now - lastStepTime > 400) {
-        stepSound.currentTime = 0;
-        stepSound.play();
-        lastStepTime = now;
-    }
-
-    requestAnimationFrame(animateStep);
-}
-
-// 📜 Основной скролл (ВОЗВРАЩАЕМ ОБЛАКА!)
 window.addEventListener("wheel", (e) => {
-    if (isTransitioning) return;
+    if (isTransitioning || window.innerWidth < 1200 || frmAppeared) return;
 
     isScrolling = true;
     setTimeout(() => { isScrolling = false; }, 200);
@@ -138,27 +129,24 @@ window.addEventListener("wheel", (e) => {
         background.style.transform = `scale(${scale})`;
     }
 
-    // 📌 Окно и портал (80%)
-    if (scrollValue > maxScroll * 0.8) {
-        windowElement.classList.add("opened");
-        zoomContainer.classList.add("opened");
-    } else {
-        windowElement.classList.remove("opened");
-        zoomContainer.classList.remove("opened");
+ 
+    let now = Date.now();
+    if (soundEnabled && now - lastStepTime > 400 && !frmAppeared) {
+        stepSound.currentTime = 0;
+        stepSound.play();
+        lastStepTime = now;
     }
 
-    // 🔮 Исчезновение объектов (85%)
-    if (scrollValue > maxScroll * 0.85) {
+
+    if (scrollValue > maxScroll * 0.80) {
         mball.style.opacity = "0";
         tablet.style.opacity = "0";
-        windowElement.style.opacity = "0";
     } else {
         mball.style.opacity = "1";
         tablet.style.opacity = "1";
-        windowElement.style.opacity = "1";
     }
 
-    // ☁️ **ОБЛАКА СНОВА РАЗЪЕЗЖАЮТСЯ**
+  
     if (scrollValue > maxScroll * 0.8) {
         let shiftX = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 100;
         let shiftY = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 50;
@@ -169,7 +157,7 @@ window.addEventListener("wheel", (e) => {
         cloudRightBottom.style.transform = `translateX(${shiftX}vw) translateY(${shiftY * 1.5}vh)`;
     }
 
-    // 🌙 Луна уходит вверх (85%)
+
     if (scrollValue > maxScroll * 0.85) {
         let moonShift = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 120;
         zoomContainer.style.transform = `translateY(-${moonShift}%)`;
@@ -178,28 +166,24 @@ window.addEventListener("wheel", (e) => {
         background.style.opacity = roomOpacity;
     }
 
-    // 🌫 **ОБЛАКА ПАДАЮТ ВНИЗ (95%)**
-    if (scrollValue > maxScroll * 0.95) {
-        let fallShift = ((scrollValue - maxScroll * 0.95) / (maxScroll * 0.05)) * 100;
-        cloudLeftTop.style.transform = `translateY(${fallShift}vh)`;
-        cloudRightTop.style.transform = `translateY(${fallShift}vh)`;
-        cloudLeftBottom.style.transform = `translateY(${fallShift}vh)`;
-        cloudRightBottom.style.transform = `translateY(${fallShift}vh)`;
-    }
 
-    // 🌀 Когда луна ушла, `frm` плавно появляется
-    if (scrollValue >= maxScroll) {
+    if (scrollValue >= maxScroll && window.innerWidth >= 1200) {
         isTransitioning = true;
 
-        zoomContainer.style.transition = "transform 2s ease-out";
+        zoomContainer.style.transition = "transform 1s ease-out";
         zoomContainer.style.transform = "translateY(-250%)";
 
-        frm.style.transition = "transform 1.8s ease-in-out, opacity 1.5s ease-in-out";
-        frm.classList.add("active");
+        frm.style.display = "block";
+        frm.style.opacity = "0";
+        frm.style.transform = "translateY(100%)"; 
 
-        // ☁️ **Облака уезжают вниз полностью**
-        clouds.style.transition = "transform 2.5s ease-in-out, opacity 1.5s ease-in-out";
-        clouds.style.transform = "translateY(100vh)";
+        setTimeout(() => {
+            frm.style.transition = "transform 1.8s ease-in-out, opacity 1.5s ease-in-out";
+            frm.style.opacity = "1";
+            frm.style.transform = "translateY(0)"; 
+            frmAppeared = true; 
+        }, 100);
+
 
         setTimeout(() => {
             background.classList.add("hidden");
@@ -209,15 +193,33 @@ window.addEventListener("wheel", (e) => {
 });
 
 
+function animateStep() {
+    if (!isScrolling || scrollValue >= maxScroll * 0.8 || frmAppeared) return;
+
+    stepProgress += 0.08;
+    let stepOffset = Math.sin(stepProgress) * 4;
+    background.style.transform = `translateY(${stepOffset}px) scale(${minScale + (scrollValue / maxScroll) * (maxScale - minScale)})`;
+
+    let now = Date.now();
+    if (soundEnabled && now - lastStepTime > 400 && !frmAppeared) {
+        stepSound.currentTime = 0;
+        stepSound.play();
+        lastStepTime = now;
+    }
+
+    requestAnimationFrame(animateStep);
+}
+
+
 // === СВЕТЛЯЧКИ ===
 
 function createFirefly() {
     const firefly = document.createElement("div");
     firefly.classList.add("firefly");
     
-    let startX = Math.random() * window.innerWidth; // Рандомная начальная позиция по X
-    let startY = Math.random() * window.innerHeight; // Рандомная начальная позиция по Y
-    let duration = Math.random() * 3 + 2; // Разная скорость полета
+    let startX = Math.random() * window.innerWidth; 
+    let startY = Math.random() * window.innerHeight; 
+    let duration = Math.random() * 3 + 2; 
 
     firefly.style.left = `${startX}px`;
     firefly.style.top = `${startY}px`;
@@ -233,15 +235,15 @@ function createFirefly() {
         fill: "forwards"
     });
 
-    // Удаляем после завершения анимации
+    
     setTimeout(() => {
         firefly.remove();
     }, duration * 1000);
 }
 
-// Запускаем светлячков при прокрутке
+
 window.addEventListener("wheel", (e) => {
-    if (e.deltaY > 0) { // Летим только если скроллим вниз
+    if (e.deltaY > 0) { 
         for (let i = 0; i < 3; i++) {
             setTimeout(createFirefly, i * 200);
         }
@@ -250,72 +252,74 @@ window.addEventListener("wheel", (e) => {
 
   
 
-  /* Функция, создающая частицы при нажатии на кнопку PlayButton*/
-  function pop(e) {
+  /* Функция, создающая частицы при нажатии на кнопку PlayButton */
+function pop(e) {
     let amount = 30;
-     if (e.target.dataset.type === 'shadow' || e.target.dataset.type === 'line') {
-       amount = 60;
-     }
-    
-     // Получаем координаты центра кнопки
-     const bbox = e.target.getBoundingClientRect();
-     const x = bbox.left + bbox.width / 2;
-     const y = bbox.top + bbox.height / 2;
-    
-     // Создаем заданное количество частиц
-     for (let i = 0; i < amount; i++) {
-       createParticle(x, y, e.target.dataset.type);
-     }
-   }
+    if (e.target.dataset.type === 'shadow' || e.target.dataset.type === 'line') {
+        amount = 60;
+    }
 
-   /* Функция создания отдельных частиц */
-   function createParticle(x, y, type) {
-     const particle = document.createElement('div');
-     particle.classList.add('particle');
-     document.body.appendChild(particle);
-    
-     let size = Math.floor(Math.random() * 30 + 10);
-     let destinationX = (Math.random() - 0.5) * 200; // Разброс частиц по горизонтали
-     let destinationY = (Math.random() - 0.5) * 200; // Разброс частиц по вертикали
-     let rotation = Math.random() * 520;
-     let delay = Math.random() * 200;
+    // Получаем координаты центра кнопки
+    const bbox = e.target.getBoundingClientRect();
+    const x = bbox.left + bbox.width / 2;
+    const y = bbox.top + bbox.height / 2;
 
-     // Если тип частицы - символ, создаем сердечко с разными цветами
-     if (type === 'symbol') {
-       particle.innerHTML = '&#9829;';
-       const colors = ['#E3B0F0', '#BD5DDE', '#9721FF'];
-      particle.style.color = colors[Math.floor(Math.random() * colors.length)];
-       particle.style.fontSize = `${size}px`;
-     }
+    // Создаем заданное количество частиц
+    for (let i = 0; i < amount; i++) {
+        createParticle(x, y, e.target.dataset.type);
+    }
+}
 
-     particle.style.width = `${size}px`;
-     particle.style.height = `${size}px`;
-     particle.style.left = `${x}px`;
-     particle.style.top = `${y}px`;
-     particle.style.position = 'absolute';
-    
-     // Анимация движения и исчезновения частиц
-     const animation = particle.animate([
-       {
-         transform: `translate(-50%, -50%) scale(1) rotate(0deg)`,
-         opacity: 1
-       },
-       {
-         transform: `translate(${destinationX}px, ${destinationY}px) scale(0.5) rotate(${rotation}deg)`,
-        opacity: 0
-       }
-     ], {
-       duration: Math.random() * 1000 + 1500,
-       easing: 'ease-out',
-       delay: delay
-     });
-    
-     // Удаляем частицу после завершения анимации
-     animation.onfinish = () => particle.remove();
-   }
+/* Функция создания отдельных частиц */
+function createParticle(x, y, type) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    document.body.appendChild(particle);
 
-   // Назначаем обработчик события клика на кнопку
-   document.getElementById("buttonPlay").addEventListener("click", pop);
+    let size = Math.floor(Math.random() * 30 + 10);
+    let destinationX = (Math.random() - 0.5) * 200; // Разброс частиц по горизонтали
+    let destinationY = (Math.random() - 0.5) * 200; // Разброс частиц по вертикали
+    let rotation = Math.random() * 520;
+    let delay = Math.random() * 200;
+
+    // Если тип частицы - символ, создаем сердечко с разными цветами
+    if (type === 'symbol') {
+        particle.innerHTML = '&#9829;';
+        const colors = ['#E3B0F0', '#BD5DDE', '#9721FF'];
+        particle.style.color = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.fontSize = `${size}px`;
+    }
+
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+    particle.style.position = 'absolute';
+    particle.style.zIndex = "100";  // 
+
+    // Анимация движения и исчезновения частиц
+    const animation = particle.animate([
+        {
+            transform: `translate(-50%, -50%) scale(1) rotate(0deg)`,
+            opacity: 1
+        },
+        {
+            transform: `translate(${destinationX}px, ${destinationY}px) scale(0.5) rotate(${rotation}deg)`,
+            opacity: 0
+        }
+    ], {
+        duration: Math.random() * 1000 + 1500,
+        easing: 'ease-out',
+        delay: delay
+    });
+
+    // Удаляем частицу после завершения анимации
+    animation.onfinish = () => particle.remove();
+}
+
+// Назначаем обработчик события клика на кнопку
+document.getElementById("buttonPlay").addEventListener("click", pop);
+
   
 
 
