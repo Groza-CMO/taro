@@ -5,6 +5,33 @@
   box-sizing: border-box;
 }
 
+:root{
+  --primary: #ddbefd;
+  --secondary: #2F2F2F;
+  --tertiary: #431379;
+  --quaternary: #702FBD;
+  --accent: #BE60C0;
+  --padding: 60px;
+  --text: #FCF6FF;
+  --background: #242424;
+  --transition: cubic-bezier(.4, 0, 0, 1);
+  --font-primary: "SF UI Display", sans-serif;
+  --font-secondary: "Ametist", serif;
+  --btn-padding: 1.25rem 5.5rem;
+  --btn-radius: 24px;
+  --btn-font: var(--font-primary);
+  --btn-font-size: 16px;
+  --btn-font-weight: 500;
+  --btn-line-height: 120%;
+  --btn-read-bg: var(--quaternary);
+  --btn-read-text: var(--text);
+  --btn-play-bg: #2F2F2F;
+  --btn-play-border: linear-gradient(90deg, #BF6DCC, #706AB3, #BF6DCC);
+  --btn-text: var(--text);
+
+}
+
+
 .book {
   position: absolute;
   top: 50%;
@@ -12,15 +39,86 @@
   transform: translate(-50%, -50%);
 }
 
-body {
-  width: 100%;
+body{
+  width: 100vw;
   height: 100vh;
-  min-width: 900px;
-  min-height: 700px;
-  background: #242424;
-  position: relative;
-}
-
+  background: radial-gradient(ellipse at bottom, var(--tertiary) 0%, #090a0f 80%);
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  }
+  
+  body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  }
+  
+  h1{
+    white-space: nowrap;
+    color: #ffffff;
+    font-family: "Ametist";
+    font-size: clamp(34px, 5vw, 60px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    margin: 0;
+    z-index: 1;
+   
+  }
+  
+  h2{
+  color: #FFF;
+  font-family: "SF UI Display";
+  font-size: clamp(12px, 2vw, 27px);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 100%;
+  margin: 0;
+  z-index: 1;
+  }
+  
+  h3{
+  color: var(--accent);
+  font-family: "SF UI Display";
+  font-size: clamp(12px, 2vw, 32px);
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  margin: 0;
+  z-index: 1;
+  }
+  
+  h4{
+    color: var(--primary);
+    font-family: "SF UI Display";
+    font-size: clamp(12px, 2vw, 24px);
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    }
+  
+  
+  p{
+  text-align: center;
+  color: var(--text);
+  font-family: "SF UI Display";
+  font-size: clamp(12px, 1vw, 16px);
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  }
+  
+  /* .hidden {
+    display: none !important;
+  } */
+  
+  
 .book {
   width: 420px;
   height: 654px;
@@ -187,174 +285,201 @@ p {
 }
  
 
-.room {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(180deg, #0c0820 87%, #202341 99.77%);
-  z-index: 1;
-  object-fit: contain;
-  overflow: hidden;
-  transform-origin: top;
-  transition: transform 0.3s ease-out;
-}
-
-.window {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    z-index: 7;
-}
-
-
-
-.curtains{
-  position: absolute;
+#choiceScreen{
   width: 100%;
   height: 100%;
-  background: url("https://i.postimg.cc/nrW8jGV6/image-1993764315.png") center/cover no-repeat;
-  z-index: 7;
-}
-
-.sash_rame{
-  position: absolute;
-  width: 45%;
-  height: 100%;
-  background: url("https://i.postimg.cc/4xK4HNCq/rame.png") center/contain no-repeat;
-  top: -15%;
-  left: 30%;
-  
-}
-.sash_left {
-  position: absolute;
-  width: 42%;
-  height: 62%;
-  background: url("https://i.postimg.cc/FsCsKk60/sashleft.png") center/contain no-repeat;
-  top: 3.5%;
-  left: 26.3%;
-  transform-origin: left center; /* Точка поворота */
-  transform: rotateY(0deg);
-  transition: transform 1.2s ease-out;
-}
-
-.sash_right {
-  position: absolute;
-  width: 42%;
-  height: 62%;
-  background: url("https://i.postimg.cc/7YZZDnKx/sashright.png") center/contain no-repeat;
-  top: 3.5%;
-  right: 21.2%;
-  transform-origin: right center; /* Точка поворота */
-  transform: rotateY(0deg);
-  transition: transform 1.2s ease-out;
-}
-
-/* 🌬️ Эффект открытия створок */
-.window.opened .sash_left {
-  transform: rotateY(-55deg); /* Открытие влево */
-}
-
-.window.opened .sash_right {
-  transform: rotateY(55deg); /* Открытие вправо */
-}
-
-
-  .tablet{
-    position: absolute;
-    width: 30vw;
-    height: 50vh;
-    background: url("https://i.postimg.cc/sDDy1RtS/table.png") center/contain no-repeat;
-    z-index: 8;
-    top: 60%;
-    left: 65%;
-    transition: transform 0.2s ease-out; 
-  }
-
-  .mball{
-    position: absolute;
-    width: 10vw;
-    height: 10vw;
-    background: url("https://i.postimg.cc/0Nm1h5wg/magicball.png") center/contain no-repeat;
-    z-index: 9;
-    top: 53%;
-    left: 74.3%;
-    transition: transform 0.2s ease-out; 
-  }
-
-/*  Фон за окном */
-.zoom-container {
-  position: absolute;
-  width: 30vw;
-  height: 30vh;
-  left: 37%;
-  top: 20%;
-  background: url('https://i.postimg.cc/t44YbS05/moon.png') center/contain no-repeat;
   overflow: hidden;
-  z-index: 2;
-  transform-origin: center; /* 🔥 Теперь масштабирование относительно центра */
-  transition: transform 1.5s ease-in-out, top 1.5s ease-in-out;
-}
-
-.zoom-container.fullscreen {
-  width: 50vw;
-  height: 50vh;
-  left: 25.5%;
-  bottom: 50%;
   margin: auto;
-  transform-origin: center; /* 🔥 Оставляем центр масштабирования */
-}
-
-
-
-.mball, .tablet, .window {
-  transition: opacity .5s ease-out;
-}
-
-
-
-.clouds {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  z-index: 2;
-  transition: opacity 1.5s ease-in-out;
-}
-
-.cloud {
-  position: absolute;
-  width: 30vw;
+  padding: 0;
+  background: radial-gradient(ellipse at left, var(--tertiary) 0%, #090a0f 80%);
+  
+  }
+  
+  .content{
+    width: 100vw;
+    height: 100vh;
+    margin-top: -3%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    align-content: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 5%;
+    z-index: 1;
+  }
+  
+  .btncont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1;
+  }
+  
+  /* Buttons */
+  
+  #btnRead, #btnPlay, #btnChooseGenre, #btnRandomGenre {
+  display: flex;
+  width: 100%;
+  min-width: 300px;
+  max-width: 350px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 4rem;
+  padding: 1.25rem 2rem;
+  border-radius: 24px;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-style: medium;
+  font-weight: 500;
+  line-height: 120%;
+  z-index: 10;
+  cursor: pointer;
+  
+  }
+  
+  
+  #btnRead, #btnChooseGenre, #choiceganre {
+  background-color: var(--quaternary);
+  color: var(--text);
+  border: none;
+  }
+  
+  #choiceganre{
+    display: flex;
+    width: 100%;
+    min-width: 100px;
+    max-width: 200px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 2rem;
+    padding: 1.2rem 2rem;
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-style: medium;
+    font-weight: 400;
+    line-height: 120%;
+  }
+  
+  #btnPlay, #btnRandomGenre {
+    background-color: #2F2F2F;
+    color: var(--text);
+    border-radius: 24px;
+    position: relative;
+    cursor: pointer;
+    border: none; 
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+  
+  #btnPlay::before {
+    content: "";
+    inset: 0; 
+    position: absolute;
+    padding: 2px; 
+    border-radius: 24px;
+    background: linear-gradient(90deg, #BF6DCC, #706AB3, #BF6DCC);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none; /* Чтобы градиент не мешал кликам */
+  }
+  
+  #btnRandomGenre::before{
+    content: "";
+    inset: 0; 
+    position: absolute;
+    padding: 2px; 
+    border-radius: 24px;
+    background: linear-gradient(90deg, #BF6DCC, #706AB3, #BF6DCC);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none; /* Чтобы градиент не мешал кликам */
+  }
+  
+  .moon{
+  width: 100%;
+  max-width: 500px;
   height: auto;
-  transition: transform 3s linear;
-}
-
-.cloud-left-top { top: 30%; left: 30%; animation: cloudLeft 3s ease-in-out infinite alternate; }
-.cloud-right-top { top: 32%; right: 25%; animation: cloudRight 4s ease-in-out infinite alternate; }
-.cloud-left-bottom { top: 40%; left: 27%; animation: cloudLeft 5s ease-in-out infinite alternate; }
-.cloud-right-bottom { top: 38%; right: 35%; animation: cloudRight 6s ease-in-out infinite alternate; }
-
-@keyframes cloudLeft {
-  0% { opacity: 1; }
-  100% { opacity: 0.6; }
-}
-
-@keyframes cloudRight {
-  0% { opacity: 0.6; }
-  100% { opacity: 1; }
-}
-
-/* ✨ Светлячки */
-.firefly {
   position: absolute;
-  width: 8px;
-  height: 8px;
-  background: radial-gradient(circle, #fff7aa, rgba(255, 247, 170, 0.5), transparent);
-  border-radius: 50%;
-  box-shadow: 0 0 10px #fff7aa;
-  pointer-events: none;
-  opacity: 0;
-  z-index: 50;
+  overflow: hidden;
+  z-index: -1;
+  opacity: 0.3;
+  left: -4%;
+  top: 25%;
+  z-index: 0;
+  
+  }
+  
+  .moon img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+ /* Четвёртый экран */
+
+ #genreOrFateScreen{
+width: 100vw;
+height: 100vh;
+overflow: hidden;
+ }
+
+.cube{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin-left: calc(100%/2 - 150px);
+  top: 60%;
+  /* animation: glow 5s ease-in-out infinite;
+  */
 }
 
+.cube img{
+max-width: 300px;
+}
+
+.cub2{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin-left: calc(100%/2 - 100px);
+  top: 55%;
+  animation: floatUpDown 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.cub2 img{
+max-width: 200px;
+transform-origin: center;
+animation: rotate2 20s ease-in-out infinite;
+}
+
+
+.rst2{
+  width: 16.36981rem;
+  height: 26.76638rem;
+  transform: rotate(16.063deg);
+  flex-shrink: 0;
+  border-radius: 8.24825rem;
+  background: linear-gradient(180deg, #7C6AB3 0%, #A653FF 100%);
+  filter: blur(200px);
+  position: absolute;
+  right: 0;
+  top: 20%;
+  animation: rest 4s ease-in-out infinite alternate, 
+             glow 3s ease-in-out infinite,
+             floatUpDown 6s ease-in-out infinite;
+
+}
 
