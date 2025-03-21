@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://myfonts.ru/myfonts?fonts=ametist" rel="stylesheet" type="text/css" />
     <link href="https://fonts.cdnfonts.com/css/sf-ui-display" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -253,33 +253,66 @@
     
     <video src="https://res.cloudinary.com/dtawhdjlp/video/upload/v1740860551/videos/smoke-background-optimized_xroqcj.mp4" class="showcase__video" autoplay loop muted></video>
     
-</section> 
+</section>  -
 
- <section id="genreSelectionScreen" class="hidden">
-    <h1>Зажмите карту с жанром, <br> чтобы прочитать описание</h1>
-
-
-    <div id="app">
-      <div class="cards-container"></div>
+<section id="genreSelectionScreen" class="hidden">
+    <div class="contentcontainer">
+        <h1>Нажмите на карту с жанром, <br> чтобы прочитать описание</h1>
+        <div class="cards-container"></div>
+</div>
+  
+    <canvas id="canvas"></canvas>
+    <div class="mirror-mist">
+        <div class="mist-layer mist1"></div>
+        <div class="mist-layer mist2"></div>
+        <div class="mist-layer mist3"></div>
     </div>
-    
+    <div class="mirrordame"></div>
+ 
+</section>
 
-    
-    
-
+ 
     
 </section> 
 
 <section id="magicMirrorScreen" class="hidden">
-    <h2>Свет мой, зеркальце, скажи... 🔮</h2>
-    <button id="btnRevealGenre">Показать мой жанр</button>
-    <p id="randomGenreText"></p>
+    <div class="mirror-frame">
+        <div class="mirror">
+            <div class="mirror-glass">
+                <video src="https://res.cloudinary.com/dtawhdjlp/video/upload/v1742412633/videos/e783174f6b799fea15f53b5a7c0cb010_ucy6rd.mp4" autoplay loop></video>
+                <div class="smoke-container">
+                    <div class="smoke-layer"></div>
+                    <div class="smoke-layer"></div>
+                    <div class="smoke-layer"></div>
+                </div>
+            </div>
+            <button id="btnRevealGenre">Спросить у зеркала</button></div>
+            <div class="mirror-rame"></div>
+        </div>
+    </div>
+     
 </section>
 
+
 <section id="booksScreen" class="hidden">
-    <h2>Выберите книгу</h2>
-    <div id="booksContainer"></div>
-</section> 
+    <h1>Нажмите на колоду, <br> чтобы получить книжный расклад</h1>
+
+    <!-- Колода карт -->
+    <div id="cardDeck" class="deck">
+        <img src="https://i.postimg.cc/yY0R6ZDB/deck.png" alt="Колода карт">
+    </div>
+
+    <!-- Контейнер для карт -->
+    <div id="booksContainer" class="hidden"></div>
+</section>
+
+<section id="choiceGame" class="hidden">
+    <h1>Выбери игру и отдохни от суеты</h1>
+    <div class="games-container">
+
+    </div>
+</section>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
