@@ -1376,8 +1376,7 @@ window.onload = function () {
             // **СОХРАНЯЕМ** выбранное настроение
             sessionStorage.setItem("selectedMoodKey", selectedMoodKey);
 
-            // Переход на экран выбора: Читать или Играть
-            showSection("choiceScreen");
+           
         });
     });
 
