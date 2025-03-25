@@ -42,104 +42,104 @@ const genresByMood = {
         { name: "Фэнтези", 
             arcana: "Маг", 
             description: "Мир волшебства, магии и великих приключений.", 
-            image: "https://i.postimg.cc/Qdc5vfV3/The-Magician.png",
+            image: "https://i.postimg.cc/Y9W5CBpq/The-Magician.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
          },
         { name: "Приключения", 
             arcana: "Дурак", 
             description: "Опасные путешествия и неожиданные открытия.", 
-            image: "https://i.postimg.cc/8zvBN1Kx/Fool.png",
+            image: "https://i.postimg.cc/q7R00Fhz/Fool.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
          },
         { name: "Хоррор", 
             arcana: "Повешенный", 
             description: "Ощущение страха, леденящие душу тайны.", 
-            image: "https://i.postimg.cc/c4gfBxS6/The-Hanged-Man.png",
+            image: "https://i.postimg.cc/2SjNFtx2/The-Hanged-Man.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
     ],
     calm: [
         { name: "Классика", 
             arcana: "Иерофант", 
             description: "Вечные произведения, наполняющие смыслом.", 
-            image: "https://i.postimg.cc/ZKGpfGbH/The-Hierophant.png",
+            image: "https://i.postimg.cc/2SHRHxcm/The-Hierophant.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
         { name: "Драма", 
             arcana: "Сила", 
             description: "Глубокие переживания, испытания и борьба.", 
-            image: "https://i.postimg.cc/VvTnPTjY/Power.png",
+            image: "https://i.postimg.cc/HnQ1BDKP/Power.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
         { name: "Психологический триллер", 
             arcana: "Луна", 
             description: "Напряжённые события и загадки разума.", 
-            image: "https://i.postimg.cc/T1hgSG57/Moon.png",
+            image: "https://i.postimg.cc/JhGwSBvX/Moon.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
     ],
     sadness: [
         { name: "Романтическая проза", 
             arcana: "Императрица", 
             description: "Чувственные истории о любви и жизни.", 
-            image: "https://i.postimg.cc/MGxRw1jj/The-Empress.png",
+            image: "https://i.postimg.cc/tCNH6bFs/The-Empress.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
         { name: "Исторический роман", 
             arcana: "Император", 
             description: "Путешествия во времени и судьбы людей.", 
-            image: "https://i.postimg.cc/CKHGncVN/Emperor.png",
+            image: "https://i.postimg.cc/T3QGzxPz/Emperor.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
         { name: "Детектив", 
             arcana: "Правосудие", 
             description: "Расследования, преступления и поиски истины.", 
-            image: "https://i.postimg.cc/pTsKqyr5/Justice.png",
+            image: "https://i.postimg.cc/JnHLHBQ8/Justice.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
     ],
     inspiration: [
         { name: "Научная фантастика", 
             arcana: "Звезда", 
             description: "Технологии будущего и великие открытия.", 
-            image: "https://i.postimg.cc/B6nKLspS/Star.png",
+            image: "https://i.postimg.cc/SQ84yCs7/Star.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
         { name: "Экшн", 
             arcana: "Колесница", 
             description: "Динамичные события, погони и схватки.", 
-            image: "https://i.postimg.cc/sf0pWBbt/The-Chariot.png",
+            image: "https://i.postimg.cc/wTpp3MRK/The-Chariot.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
         { name: "Трагедия", 
             arcana: "Смерть", 
             description: "Сильные эмоции, неизбежные потери и катарсис.", 
-            image: "https://i.postimg.cc/c42MpKmQ/Death.png",
+            image: "https://i.postimg.cc/sg3sHx3P/Death.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
     ],
     tiredness: [
         { name: "Готическая литература", 
             arcana: "Дьявол", 
             description: "Мрачные тайны, заброшенные замки и судьбы.", 
-            image: "https://i.postimg.cc/bvj0vK4r/Devil.png",
+            image: "https://i.postimg.cc/0NBvNCDZ/Devil.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
         { name: "Философский роман", 
             arcana: "Отшельник", 
             description: "Размышления о жизни, судьбе и смысле.", 
-            image: "https://i.postimg.cc/zBznCTz1/Hermit.png",
+            image: "https://i.postimg.cc/mkxGY2dH/Hermit.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
         { name: "Мистика", 
             arcana: "Жрица", 
             description: "Скрытые знания, предчувствия и судьбоносные знаки.", 
-            image: "https://i.postimg.cc/nLkmhMvS/The-Priestess.png",
+            image: "https://i.postimg.cc/HLRGmk1h/The-Priestess.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
     ],
     confusion: [
         { name: "Юмор", 
             arcana: "Солнце", 
             description: "Забавные истории, поднимающие настроение.", 
-            image: "https://i.postimg.cc/269BnJ94/The-sun.png",
+            image: "https://i.postimg.cc/DfqVVhjx/The-sun.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
         { name: "Сказка", 
             arcana: "Колесо Фортуны", 
             description: "Волшебные истории, где добро побеждает зло.", 
-            image: "https://i.postimg.cc/mk0z59sk/The-Wheel-of-Fortune.png",
+            image: "https://i.postimg.cc/zvw4Twbs/The-Wheel-of-Fortune.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
         { name: "Романтика", 
             arcana: "Влюблённые", 
             description: "Сердечные переживания, чувства и судьба.", 
-            image: "https://i.postimg.cc/nrs92kNN/The-lovers.png",
+            image: "https://i.postimg.cc/d3cz7N1R/The-lovers.png",
             imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
     ]
 };
@@ -946,22 +946,32 @@ let frmAppeared = false;
 
 const magicBall = document.querySelector(".mball-container");
 const clickHint = document.querySelector(".click-hint");
+let hintHidden = false;
 
 function checkScreenSize() {
     if (window.innerWidth < 1200) {
         background.style.display = "none";
+
         frm.style.display = "block";
         frm.style.opacity = "1";
-        frm.style.transform = "translateY(0)";
-        darkOverlay.style.display = "none"; 
+        frm.style.filter = "blur(0px) contrast(1)";
+        frm.classList.remove("show-ink");
+
+        darkOverlay.style.display = "none";
         frmAppeared = true;
     } else {
         background.style.display = "block";
+
         frm.style.display = "none";
-        darkOverlay.style.display = "block"; 
+        frm.style.opacity = "0";
+        frm.style.filter = "blur(20px) contrast(0.5)";
+        frm.classList.remove("show-ink"); // сбрасываем эффект
+
+        darkOverlay.style.display = "block";
         frmAppeared = false;
     }
 }
+
 
 
 window.addEventListener("load", checkScreenSize);
@@ -974,8 +984,8 @@ document.addEventListener("mousemove", (e) => {
         let y = e.clientY;
 
         requestAnimationFrame(() => {
-            darkOverlay.style.maskImage = `radial-gradient(circle 6rem at ${x}px ${y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%)`;
-            darkOverlay.style.webkitMaskImage = `radial-gradient(circle 6rem at ${x}px ${y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%)`;
+            darkOverlay.style.maskImage = `radial-gradient(circle 4rem at ${x}px ${y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%)`;
+            darkOverlay.style.webkitMaskImage = `radial-gradient(circle 4rem at ${x}px ${y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%)`;
         });
     }
 });
@@ -987,8 +997,18 @@ magicBall.addEventListener("click", () => {
         stepSound.pause();
         soundEnabled = true;
 
-        clickHint.textContent = "Иди вперёд (скролл)";
-        document.querySelector(".mball").style.animation = "none";
+        // Показываем подсказку
+        if (clickHint) {
+            clickHint.textContent = "Иди вперёд (скролл)";
+            clickHint.style.display = "block";
+            clickHint.style.opacity = "1";
+            clickHint.style.transition = "opacity 0.5s ease, background-color 0.5s ease";
+           
+        }
+
+        if (mball) {
+            mball.style.animation = "none";
+        }
 
         darkOverlay.classList.remove("light-off");
         darkOverlay.classList.add("light-on");
@@ -996,8 +1016,20 @@ magicBall.addEventListener("click", () => {
     }
 });
 
-
 window.addEventListener("wheel", (e) => {
+    if (!hintHidden && clickHint && getComputedStyle(clickHint).opacity !== "0") {
+        hintHidden = true;
+
+        clickHint.style.opacity = "0";
+        clickHint.style.backgroundColor = "transparent";
+        
+
+        setTimeout(() => {
+            clickHint.textContent = "";
+        }, 2000);
+    }
+
+    // Блокируем скролл при переходе, на мобилке или если frm уже появился
     if (isTransitioning || window.innerWidth < 1200 || frmAppeared) return;
 
     isScrolling = true;
@@ -1008,6 +1040,7 @@ window.addEventListener("wheel", (e) => {
 
     let scale = minScale + (scrollValue / maxScroll) * (maxScale - minScale);
 
+    // Анимация шага
     if (scrollValue < maxScroll * 0.8) {
         requestAnimationFrame(animateStep);
     } else {
@@ -1015,7 +1048,7 @@ window.addEventListener("wheel", (e) => {
         background.style.transform = `scale(${scale})`;
     }
 
- 
+    // Звук шагов
     let now = Date.now();
     if (soundEnabled && now - lastStepTime > 400 && !frmAppeared) {
         stepSound.currentTime = 0;
@@ -1023,7 +1056,7 @@ window.addEventListener("wheel", (e) => {
         lastStepTime = now;
     }
 
-
+    // Скрытие шарика и планшета при приближении
     if (scrollValue > maxScroll * 0.80) {
         mball.style.opacity = "0";
         tablet.style.opacity = "0";
@@ -1032,7 +1065,7 @@ window.addEventListener("wheel", (e) => {
         tablet.style.opacity = "1";
     }
 
-  
+    // Движение облаков
     if (scrollValue > maxScroll * 0.8) {
         let shiftX = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 100;
         let shiftY = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 50;
@@ -1043,7 +1076,7 @@ window.addEventListener("wheel", (e) => {
         cloudRightBottom.style.transform = `translateX(${shiftX}vw) translateY(${shiftY * 1.5}vh)`;
     }
 
-
+    // Смещение камеры и затухание комнаты
     if (scrollValue > maxScroll * 0.85) {
         let moonShift = ((scrollValue - maxScroll * 0.85) / (maxScroll * 0.15)) * 120;
         zoomContainer.style.transform = `translateY(-${moonShift}%)`;
@@ -1052,31 +1085,38 @@ window.addEventListener("wheel", (e) => {
         background.style.opacity = roomOpacity;
     }
 
-
-    if (scrollValue >= maxScroll && window.innerWidth >= 1200) {
+    if (scrollValue >= maxScroll && window.innerWidth >= 1200 && !frmAppeared) {
+        console.log("🔥 Переход к frm активирован");
         isTransitioning = true;
-
+    
         zoomContainer.style.transition = "transform 1s ease-out";
         zoomContainer.style.transform = "translateY(-250%)";
-
+    
         frm.style.display = "block";
-        frm.style.opacity = "0";
-        frm.style.transform = "translateY(100%)"; 
-
-        setTimeout(() => {
-            frm.style.transition = "transform 1.8s ease-in-out, opacity 1.5s ease-in-out";
-            frm.style.opacity = "1";
-            frm.style.transform = "translateY(0)"; 
-            frmAppeared = true; 
-        }, 100);
-
-
+        frm.classList.remove("show-ink");
+        
+        // Удаляем лишние inline-стили
+        frm.style.opacity = "";
+        frm.style.filter = "";
+        
+        requestAnimationFrame(() => {
+          void frm.offsetWidth;
+          frm.classList.add("show-ink");
+          frmAppeared = true;
+        });
+        
+    
         setTimeout(() => {
             background.classList.add("hidden");
             isTransitioning = false;
         }, 1500);
     }
+    
+    
+    
 });
+
+
 
 
 function animateStep() {
@@ -1182,7 +1222,7 @@ function createParticle(x, y, type) {
     particle.style.left = `${x}px`;
     particle.style.top = `${y}px`;
     particle.style.position = 'absolute';
-    particle.style.zIndex = "100";  // 
+    particle.style.zIndex = "1000";  // 
 
     // Анимация движения и исчезновения частиц
     const animation = particle.animate([
@@ -1688,25 +1728,6 @@ document.getElementById("btnRevealGenre").addEventListener("click", function () 
     }, 6000);
 });
 
-// const booksBtn = card.querySelector(".books-btn");
-
-// booksBtn.addEventListener("click", () => {
-//     const genre = booksBtn.dataset.genre;
-//     console.log(`📚 Жанр из зеркала: ${genre}`);
-
-//     // Сохраняем жанр
-//     sessionStorage.setItem("selectedGenre", genre);
-
-//     // Переход к экрану с книгами
-//     showSection("booksScreen");
-
-//     // Через 300 мс колода будет доступна для клика
-//     setTimeout(() => {
-//         document.getElementById("cardDeck").classList.remove("hidden");
-//         document.getElementById("booksContainer").classList.add("hidden");
-//     }, 300);
-// });
-
 
 
 // == Логика для booksScreen == //
@@ -1911,14 +1932,14 @@ document.getElementById("btnPlay").addEventListener("click", function () {
 
 
 
-// // Игры
-// const games = [
-//     { title: "Таро-квест", link: "#" },
-//     { title: "Игра в судьбу", link: "#" },
-//     { title: "Загадка книг", link: "#" },
-//     { title: "Тень прошлого", link: "#" },
-//     { title: "Книжное предсказание", link: "#" }
-// ];
+// Игры
+const games = [
+    { title: "Тайны таро", link: "#" },
+    { title: "Волшебные кристаллы", link: "#" },
+    { title: "Магический пазл", link: "#" },
+    { title: "Ловец снов", link: "#" },
+    { title: "Книжное предсказание", link: "#" }
+];
 
 
 

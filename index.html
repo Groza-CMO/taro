@@ -17,6 +17,34 @@
 </head>
 <body>
 
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
+        <defs>
+          <filter id="ink-blot">
+            <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="3" seed="3" result="turbulence"/>
+            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="120" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+      </svg>
+      
+
+    <button id="toggleDevMode" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  background: #1a1a1d;
+  color: #fff;
+  padding: 10px 16px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: monospace;
+">
+  💻 Режим разработки
+</button>
+
+
     <section id="screen1">
 
       <div class="dark-overlay"></div> 
@@ -60,28 +88,21 @@
       
 
     <div class="frm">
+    <div class="warframe">
+    <div class="card-main">
+        <img class="dama" src="https://i.postimg.cc/yYjpy8xS/Frame_2131331866_(1).png" alt="">
+    </div>
+
     <div class="contentcont">
     <div class="txt">
     <h1>Таро книголюбов</h1>
-    <h2>hendrerit tortor. hendrerit at In ultrices quam nulla, cursus tempor ex. diam non. <br> ex non.  vel Quisque placerat Praesent Vestibulum enim.  Nam ipsum amet, non. </h2>
-    
-
-</div>
-
+    <h2>hendrerit tortor. hendrerit at In ultrices quam nulla, cursus <br> tempor ex. diam non.  ex non.  vel Quisque placerat Praesent <br> Vestibulum enim.  Nam ipsum amet, non. </h2>
+    </div>
     <button data-type="symbol" id="buttonPlay">Начать игру</button>
-   
+    </div>
+    </div>
     </div>
 
-
-    <div class="card-main">
-        <img class="dama" src="https://i.postimg.cc/V6r7kLH9/dama.png" alt="">
-    </div>
-
-   
-
-    </div>
-
-    <div class="rest"></div>
     <div class="stars">
     <div id='stars'></div>
     <div id='stars2'></div>
@@ -309,9 +330,79 @@
 <section id="choiceGame" class="hidden">
     <h1>Выбери игру и отдохни от суеты</h1>
     <div class="games-container">
+  
+      <!-- Игра 1 -->
+    
+      <div class="game-card-container">
+        <a href="game1.html" class="card" target="_blank">
+          <div class="wrapper">
+            <img src="https://i.postimg.cc/B6LDbXxW/Piki.png" class="cover-image" />
+          </div>
+          <span class="title">Тайны таро</span>
+        <img src="https://i.postimg.cc/1RFwZVmw/PikiMan.png" class="character" />
+        </a>
+        <p class="game-description">Успокой свой разум, находя одинаковые карты во мраке таро-вселенной. Простая, но&nbsp;умиротворяющая игра на&nbsp;внимательность и&nbsp;тренировку памяти.</p>
+      </div>
+      
+  
+      <!-- Игра 2 -->
 
+      <div class="game-card-container">
+        <a href="game1.html" class="card" target="_blank">
+          <div class="wrapper">
+            <img src="https://i.postimg.cc/XYL9zMVP/Chervi.png" class="cover-image" />
+          </div>
+          <span class="title">Найди пару</span>
+          <img src="https://i.postimg.cc/q7Zyp86X/Chervi-Man.png" class="character" />
+        </a>
+        <p class="game-description">Успокой свой разум, находя одинаковые карты в мраке таро-вселенной. Простая, но гипнотизирующая медитация.</p>
+      </div>
+  
+      <!-- Игра 3 -->
+      
+      <div class="game-card-container">
+        <a href="game1.html" class="card" target="_blank">
+          <div class="wrapper">
+            <img src="https://i.postimg.cc/k40Sbqc2/Joker.png" class="cover-image" />
+          </div>
+          <span class="title">Найди пару</span>
+          <img src="https://i.postimg.cc/sx5hPq6w/JokerMan.png" class="character" />
+        </a>
+        <p class="game-description">Успокой свой разум, находя одинаковые карты в мраке таро-вселенной. Простая, но гипнотизирующая медитация.</p>
+      </div>
+      
+      
+
+      <!-- Игра 4 -->
+  
+      <div class="game-card-container">
+        <a href="game1.html" class="card" target="_blank">
+          <div class="wrapper">
+            <img src="https://i.postimg.cc/yYz966x5/Treff.png" class="cover-image" />
+          </div>
+          <span class="title">Найди пару</span>
+          <img src="https://i.postimg.cc/ZKFNWkyq/TreffMan.png" class="character" />
+        </a>
+        <p class="game-description">Успокой свой разум, находя одинаковые карты в мраке таро-вселенной. Простая, но гипнотизирующая медитация.</p>
+      </div>
+      
+
+       <!-- Игра 5 -->
+  
+      <div class="game-card-container">
+        <a href="game1.html" class="card" target="_blank">
+          <div class="wrapper">
+            <img src="https://i.postimg.cc/x1nK5jSH/Bubi.png" class="cover-image" />
+          </div>
+          <span class="title">Найди пару</span>
+          <img src="https://i.postimg.cc/q772fmqv/BubiMan.png" class="character" />
+        </a>
+        <p class="game-description">Успокой свой разум, находя одинаковые карты в мраке таро-вселенной. Простая, но гипнотизирующая медитация.</p>
+      </div>
+  
     </div>
-</section>
+  </section>
+  
 
 
 
@@ -319,5 +410,30 @@
 
 
 <script src="js/app.js"></script>
+<script>
+    const btn = document.getElementById('toggleDevMode');
+    let devMode = false;
+  
+    btn.addEventListener('click', () => {
+      devMode = !devMode;
+  
+      const allSections = document.body.querySelectorAll('body > *:not(#toggleDevMode):not(script)');
+  
+      allSections.forEach(el => {
+        if (!el.matches('#choiceGame')) {
+          el.style.display = devMode ? 'none' : '';
+        } else {
+          el.style.display = devMode ? 'block' : '';
+          if (devMode) {
+            el.classList.remove('hidden');
+          }
+        }
+      });
+  
+      btn.textContent = devMode ? '👁 Показать всё' : '💻 Режим разработки';
+    });
+  </script>
+  
+  
 </body>
 </html>

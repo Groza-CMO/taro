@@ -1,0 +1,136 @@
+body {
+    background: radial-gradient(ellipse at center, #1b0025 0%, #0a0011 100%);
+    color: #fff0f5;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  
+  .game-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+  
+  /* Верхняя панель с таймером, прогрессом и очками */
+  .game-ui-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 700px;
+  }
+  
+  /* Прогресс цели */
+  #targetProgress {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .target-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 10px;
+    background: #2b0042;
+    border: 2px solid gold;
+    border-radius: 14px;
+    overflow: hidden;
+    min-width: 200px;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  
+  .target-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(to right, gold, #ffdb70);
+    z-index: 1;
+    opacity: 0.3;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  
+  .target-icon {
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
+    margin-right: 8px;
+  }
+  
+  .target-text {
+    z-index: 2;
+    color: #fff6e5;
+  }
+  
+  /* Игровое поле */
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(10, 60px);
+    grid-template-rows: repeat(10, 60px);
+    gap: 0;
+    border: 2px solid rgb(255, 244, 179);
+  }
+  
+  .cell {
+    width: 60px;
+    height: 60px;
+    background-size: 50px 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(255, 244, 179);
+    transition: transform 0.1s ease;
+  }
+  
+  .cell.matched {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  
+  /* Конец игры */
+  #gameOver {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #ffd2ff;
+    margin-top: 1rem;
+  }
+  
+  /* Кнопки */
+  .button-bar {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  button {
+    background: #a331fa;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background: gold;
+    color: #2a003f;
+  }
+  

@@ -1,0 +1,309 @@
+@font-face {
+    font-family: "Ametist";
+    src: url("https://myfonts.ru/myfonts?fonts=ametist");
+  }
+  @font-face {
+    font-family: "SF UI Display";
+    src: url("https://fonts.cdnfonts.com/css/sf-ui-display");
+  }
+
+  :root{
+    --primary: #ddbefd;
+    --secondary: #2F2F2F;
+    --tertiary: #431379;
+    --quaternary: #702FBD;
+    --accent: #FDC180;
+    --padding: 60px;
+    --text: #FCF6FF;
+    --background: #242424;
+    --transition: cubic-bezier(.4, 0, 0, 1);
+    --font-primary: "SF UI Display", sans-serif;
+    --font-secondary: "Ametist", serif;
+    --btn-padding: 1.25rem 5.5rem;
+    --btn-radius: 24px;
+    --btn-font: var(--font-primary);
+    --btn-font-size: 16px;
+    --btn-font-weight: 500;
+    --btn-line-height: 120%;
+    --btn-read-bg: var(--quaternary);
+    --btn-read-text: var(--text);
+    --btn-play-bg: #2F2F2F;
+    --btn-play-border: linear-gradient(90deg, #BF6DCC, #706AB3, #BF6DCC);
+    --btn-text: var(--text);
+  
+  }
+  
+
+
+* {
+    box-sizing: border-box;
+  }
+  
+
+  html, body {
+    height: 100%;
+  }
+  
+
+  body {
+    background: radial-gradient(82.76% 87.08% at 100% 0%, #3B2280 0%, #0C071A 100%);
+    min-height: 100%;
+    font-family: "SF UI Display", sans-serif;
+  }
+
+  h2{
+    color: #FFF;
+    font-family: "SF UI Display";
+    font-size: clamp(12px, 2vw, 27px);
+    font-style: normal;
+    font-weight: 300;
+    line-height: 100%;
+    margin: 0;
+    z-index: 1;
+    }
+  
+  /* стили основного блока */
+  .wrap {
+ 
+    position: relative;
+    height: 100%;
+    min-height: 500px;
+    padding-bottom: 20px;
+  }
+  
+  /* блок с игрой */
+  .game {
+    transform-style: preserve-3d;
+    perspective: 500px;
+    min-height: 100%;
+    height: 100%;
+  
+  }
+  
+  
+  
+  /* стили карточек */
+  .card {
+    float: left;
+    width: 16.66666%;
+    height: 25%;
+    padding: 5px;
+    text-align: center;
+    display: block;
+    perspective: 500px;
+    position: relative;
+    cursor: pointer;
+    z-index: 50;
+   
+  }
+  
+
+  @media (max-width: 800px) {
+    .card {
+      width: 25%;
+      height: 16.666%;
+    }
+  }
+  
+
+  .card .inside {
+
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform-style: preserve-3d;
+    transition: 0.4s ease-in-out;
+    background: rgba(255, 255, 255, 0);
+  }
+  
+  
+  
+
+  .card .front, .card .back {
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+  }
+  
+
+  .card .front img, .card .back img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+  }
+  
+
+  .card .front {
+    transform: rotateY(-180deg);
+  }
+  
+  @media (max-width: 800px) {
+    .card .front {
+      padding: 5px;
+    }
+  
+    .card .back {
+      padding: 10px;
+    }
+  }
+  
+
+  .card .inside.picked, .card .inside.matched {
+    transform: rotateY(180deg);
+  }
+  
+
+  @keyframes matchAnim {
+    0% {
+
+    background: radial-gradient(50.99% 50.99% at 50% 50%, #320769 0%, rgba(58, 27, 87, 0.959) 42.71%, rgba(46, 0, 67, 0.01) 100%);
+
+    }
+    100% {
+    
+    background: radial-gradient(50.99% 50.99% at 50% 50%, #450769 0%, rgba(87, 27, 74, 0.959) 42.71%, rgba(67, 0, 64, 0.01) 100%);
+    }
+  }
+  
+
+  @-webkit-keyframes matchAnim {
+    0% {
+
+        background: radial-gradient(50.99% 50.99% at 50% 50%, #320769 0%, rgba(58, 27, 87, 0.959) 42.71%, rgba(46, 0, 67, 0.01) 100%);
+    
+        }
+        100% {
+        
+        background: radial-gradient(50.99% 50.99% at 50% 50%, #450769 0%, rgba(87, 27, 74, 0.959) 42.71%, rgba(67, 0, 64, 0.01) 100%);
+        }
+  }
+  
+
+  .card .inside.matched {
+    -webkit-animation: 1s matchAnim ease-in-out;
+            animation: 1s matchAnim ease-in-out;
+    -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+  }
+  
+
+  .modal-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    background: url("https://i.postimg.cc/sfBgT8JD/Group-2131328191.png") no-repeat center center/cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    
+  }
+  
+
+  .modal {
+    display: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100vw;
+    height: 30vh;
+    margin: auto;
+    top: 40%;
+    
+
+  }
+  
+
+  .modal .winner {
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    text-align: center;
+    color: var(--text);
+    font-family: var(--font-primary);
+    padding-bottom: 3rem;
+    
+  }
+  
+  
+  @media (max-width: 480px) {
+    .modal .winner {
+      font-size: 60px;
+    }
+  }
+  
+
+  .modal .restart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 17vw;
+    min-width: 130px;
+    max-height: 6vh;
+    min-height: 20px;
+    padding: 1rem 3rem;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 0.5rem;
+    background: var(--quaternary);
+    color: #F3F3F3;
+    text-align: center;
+    font-family: "SF UI Display";
+    font-size: clamp(12px, 2vw, 27px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  
+
+  .modal .restart:hover {
+    background: var(--accent);
+    color: var(--secondary);
+  
+  }
+  
+  .buttonsi{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .modal .message {
+    text-align: center;
+  }
+
+  @keyframes rotation {
+    0% {
+        transform:rotate(1deg);
+        opacity: 50%;
+    }
+
+    25%{
+        transform:rotate(2deg);
+    }
+
+    50%{
+        transform:rotate(1deg);
+    }
+
+    75%{
+        transform:rotate(-2deg);
+    }
+
+    100% {
+        transform:rotate(1deg);
+    }
+}

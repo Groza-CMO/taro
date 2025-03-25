@@ -23,7 +23,7 @@
   --secondary: #2F2F2F;
   --tertiary: #431379;
   --quaternary: #702FBD;
-  --accent: #BE60C0;
+  --accent: #FDC180;
   --padding: 60px;
   --text: #FCF6FF;
   --background: #242424;
@@ -41,6 +41,8 @@
   --btn-play-bg: #2F2F2F;
   --btn-play-border: linear-gradient(90deg, #BF6DCC, #706AB3, #BF6DCC);
   --btn-text: var(--text);
+  --card-game-height: 300px;
+  --card-game-width: calc(var(--card-game-height) / 1.5);
 
 }
 
@@ -67,6 +69,7 @@ body {
   overflow: hidden;
   display: block;
   border: none !important;
+  
 }
 
 html {
@@ -380,45 +383,66 @@ overflow: hidden;
 
 
 
-.frm{
-width: 100vw;
-height: 100vh;
-overflow: hidden;
-object-fit: contain;
-background: transparent;
-margin: 0;
-padding: 0;
-opacity: 0;
-transform: translateY(100vh);
-transition: opacity 1s ease-out, transform 1s ease-out;
-z-index: 100;
-position: relative;
-display: flex;
-align-items: center;
+.frm {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  opacity: 0;
+  filter: blur(20px) contrast(0.5);
+  background-image: url("https://i.postimg.cc/MT1dMWgH/Wireframe_-_9.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  z-index: 1000;
+
+  /* Маска чернильного пятна через radial-gradient */
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 70%);
+  -webkit-mask-size: 300% 300%;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+
+  mask-image: radial-gradient(circle at center, black 40%, transparent 70%);
+  mask-size: 300% 300%;
+  mask-position: center;
+  mask-repeat: no-repeat;
+
+  transition:
+    opacity 1.5s ease,
+    filter 1.8s ease,
+    -webkit-mask-size 2.2s ease,
+    mask-size 2.2s ease;
 }
 
-.frm.active {
+.frm.show-ink {
+  display: block !important;
   opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto; 
+  filter: blur(0px) contrast(1);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+
+.warframe{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contentcont{
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 3rem;
-  position: absolute;
+  gap: 1rem;
+  align-self: stretch;
   z-index: 1;
-  bottom: 0;
-  margin: auto;
-  border-radius: 120px 120px 0px 0px;
-  background: rgba(59, 32, 85, 0.226);
-  backdrop-filter: blur(50px);
-  padding: 2rem 8rem 3rem 8rem;
+  padding-bottom: 60px;
+  gap: 2.5rem;
+
 
 }
 
@@ -429,27 +453,27 @@ align-items: center;
   align-items: center;
   align-self: stretch;
   text-align: center;
-  gap: 1.5rem;
+  gap: 1rem;
+  
 }
 
 
 
 #buttonPlay{
   display: flex;
-  max-width: 17vw;
-  min-width: 130px;
-  max-height: 6vh;
-  min-height: 20px;
-  padding: 1rem 3rem;
+  width: 15.3125rem;
+  height: 3.5625rem;
+  padding: 0rem 3.125rem;
   justify-content: center;
   align-items: center;
+  gap: 0.625rem;
   border: none;
-  border-radius: 0.5rem;
-  background: var(--quaternary);
-  color: #F3F3F3;
+  border-radius: 4rem;
+  background: #FDC180;
+  color: var(--secondary);
   text-align: center;
   font-family: "SF UI Display";
-  font-size: clamp(12px, 2vw, 27px);
+  font-size: clamp(12px, 2vw, 18px);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -462,8 +486,8 @@ align-items: center;
 
 #buttonPlay:hover{
  transform: scale(1);
- background: var(--primary);
- color: var(--btn-play-bg);
+ background: var(--quaternary);
+ color: var(--text);
  animation: pulse 2s infinite;
   
 }
@@ -473,14 +497,18 @@ width: 100%;
 object-fit: contain;
 overflow: hidden;
 align-content: stretch;
-padding-top: .1%;
-position: absolute;
+top: 0;
+margin: auto;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .dama{
-width: 50%;
+width: 44rem;
 height: auto;
-margin-left: calc(50%/2);
+
+
 
 }
 
@@ -732,7 +760,7 @@ box-sizing: border-box;
   max-width: 350px;
   min-height: 30px;
   max-height: 60px;
-  background-color: var(--accent);
+  background-color: var(--quaternary);
   border-radius: 16px;
   padding: .8rem 2rem;
   border: none;
@@ -1008,7 +1036,8 @@ box-sizing: border-box;
   overflow: hidden;
   margin: auto;
   padding: 0;
-  background: radial-gradient(ellipse at left, var(--tertiary) 0%, #090a0f 80%);
+  background: url("https://i.postimg.cc/Y056mSZP/image-1993764457.png") no-repeat center center/cover;
+  margin: 0;
   
   }
 
@@ -1161,10 +1190,6 @@ left: -4%;
 
 /* Четвёртый экран */
 
-*,
-* genreOrFateScreen{
-box-sizing: border-box;
-}
 
 #genreOrFateScreen{
   width: 100vw;
@@ -1173,6 +1198,11 @@ box-sizing: border-box;
   overflow: hidden;
   margin: 0;
   padding: 0;
+  background: url("https://i.postimg.cc/bv9mc1Ww/image-1993764456.png") no-repeat center center/cover;
+   }
+
+   #genreOrFateScreen .content{
+   z-index: 200;
    }
   
   .cube{
@@ -1203,13 +1233,12 @@ box-sizing: border-box;
   animation: rotate2 20s ease-in-out infinite;
   }
 
+  #genreOrFateScreen video{
+    z-index: 0;
+  }
+
 
 /* === ОСНОВНОЙ ЭКРАН ВЫБОРА ЖАНРА === */
-
-*,
-* genreSelectionScreen{
-box-sizing: border-box;
-}
 
 #genreSelectionScreen {
   width: 100vw;
@@ -1271,7 +1300,7 @@ box-sizing: border-box;
 
 .cards-container {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: center; 
   flex-wrap: wrap; 
   max-width: 90vw; 
@@ -1281,8 +1310,8 @@ box-sizing: border-box;
 
 .card {
   aspect-ratio: 3 / 5; 
-  width: clamp(12rem, 18vw, 19.8125rem); 
-  max-width: 100%; 
+  width: 19.8125rem; 
+  height: 29.8125rem;
   cursor: pointer;
   transition: transform 0.3s ease-out;
   flex-shrink: 0;
@@ -1421,7 +1450,7 @@ canvas {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  background: url("https://i.postimg.cc/JhyxyNzY/Frame-2131331854.png");
+  background: url("https://i.postimg.cc/mgD92CPr/image-1993764437.png") no-repeat center center/cover;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1625,7 +1654,7 @@ background-color: var(--tertiary);
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: url("https://i.postimg.cc/8kX29Hrs/image_1993764306.png");
+  background: url("https://i.postimg.cc/Fz4c96St/image-1993764432.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1642,6 +1671,7 @@ font-size: clamp(2rem, 3vw, 4rem);
 text-align: center;
 padding-bottom: 2%;
 }
+
 
 #booksScreen p{
   white-space: wrap;
@@ -1778,6 +1808,214 @@ background-clip: text;
 
 .read-btn:hover {
   background: #6a1bb2;
+}
+
+/* == choiceGameScreen == */
+
+#choiceGame {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: radial-gradient(ellipse at center, var(--tertiary) 0%, #090a0f 80%);
+  margin: 0 !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  overflow: hidden !important;
+}
+
+#choiceGame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 20, 0.5);
+  z-index: -1;
+}
+
+
+#choiceGame h1 {
+  font-size: 3rem;
+  margin: 0 0 12rem 0; 
+  padding: 0;
+  color: #fff;
+ 
+}
+
+/* === Контейнер карточек === */
+#choiceGame .games-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+/* === Обёртка под каждую карточку с описанием === */
+#choiceGame .game-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: var(--card-width, 260px);
+  text-align: center;
+  color: #eaeaea;
+}
+
+/* === Карточка === */
+#choiceGame .card {
+  width: var(--card-width, 260px);
+  height: var(--card-height, 400px);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 36px;
+  perspective: 2500px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Обложка */
+#choiceGame .cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Враппер */
+#choiceGame .wrapper {
+  transition: all 0.5s;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+#choiceGame .card:hover .wrapper {
+  transform: perspective(900px) translateY(-5%) rotateX(25deg);
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+/* Градиенты */
+#choiceGame .wrapper::before,
+#choiceGame .wrapper::after {
+  content: "";
+  opacity: 0;
+  width: 100%;
+  height: 80px;
+  transition: all 0.5s;
+  position: absolute;
+  left: 0;
+}
+
+#choiceGame .wrapper::before {
+  top: 0;
+  height: 100%;
+  background-image: linear-gradient(to top, transparent 46%, rgba(12, 13, 19, 0.5) 68%, rgba(12, 13, 19) 97%);
+}
+
+#choiceGame .wrapper::after {
+  bottom: 0;
+  opacity: 0; /* ← раньше было 1 */
+  background-image: linear-gradient(
+    to bottom,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+  );
+}
+
+
+#choiceGame .card:hover .wrapper::before,
+#choiceGame .card:hover .wrapper::after {
+  opacity: 1;
+}
+
+#choiceGame .card:hover .wrapper::after {
+  height: 120px;
+}
+
+/* === Название внутри карточки === */
+#choiceGame .title {
+  width: 100%;
+  font-size: 1.5rem;
+  color: var(--accent);
+  font-family: var(--font-secondary);
+  transition: all 0.5s;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+#choiceGame .card:hover .title {
+  opacity: 1;
+  transform: translate3d(0%, -50px, 100px);
+}
+
+
+#choiceGame .card:hover .title {
+  transform: translate3d(0%, -50px, 100px);
+}
+
+/* === Персонаж (скрыт до ховера) === */
+#choiceGame .character {
+  width: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+}
+
+#choiceGame .card:hover .character {
+  opacity: 1;
+  transform: translate3d(0%, -20%, 100px);
+}
+
+/* === Описание игры === */
+#choiceGame .game-description {
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  text-align: left;
+  font-family: var(--font-primary, 'Roboto', sans-serif);
+  color: var(--text, #ccc);
+  border-radius: 0.5rem;
+  background: #171717;
+  border: 1px solid var(--accent, #c084fc);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+/* Плавное появление описания при ховере */
+#choiceGame .card:hover ~ .game-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Адаптив === */
+@media (max-width: 768px) {
+  #choiceGame .card {
+    width: 80vw;
+    height: 60vw;
+  }
+
+  #choiceGame h1 {
+    font-size: 2.2rem;
+  }
+
+  #choiceGame .title {
+    font-size: 1.2rem;
+  }
+
+  #choiceGame .game-description {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
 }
 
 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Волшебные кристаллы</title>
+    <link rel="stylesheet" href="../css/game2.css">
+    
+
+    <style>
+      body { margin: 0; overflow: hidden; background-color: #111; }
+      canvas { display: block; }
+  </style>
+  
+</head>
+<body>
+    <div class="game-wrapper">
+
+        <div class="game-ui-top">
+          <div id="timer">⏳ 2:00</div>
+    
+          <div id="targetProgress">
+            <div class="target-bar">
+              <div class="target-fill" id="targetFill"></div>
+              <div class="target-icon"></div>
+              <div class="target-text">
+                Собрано: <span id="targetCount">0</span> / <span id="targetTotal">30</span>
+              </div>
+            </div>
+          </div>
+    
+          <div id="score">💎 Очки: 0</div>
+        </div>
+    
+        <div id="grid"></div>
+    
+        <div id="gameOver" class="hidden">
+     
+         <span id="finalScore"></span>
+        </div>
+    
+        <div class="button-bar">
+          <button id="restartBtn"> Начать заново</button>
+          <button id="backBtn"> В меню</button>
+        </div>
+    
+        <audio id="matchSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_48b57cf2be.mp3?filename=magic-chime-45469.mp3"></audio>
+      </div>
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/game2.js"></script>
+</html>
