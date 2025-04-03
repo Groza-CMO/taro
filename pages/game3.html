@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Волшебные кристаллы</title>
+    <link rel="stylesheet" href="../css/game3.css">
+    
+
+    <style>
+      body { margin: 0; overflow: hidden; }
+      canvas { display: block; }
+  </style>
+  
+</head>
+<body>
+    
+  <section id="dreamCatcher" class="dream-section">
+    <div class="dream-canvas-wrapper">
+      <canvas id="dreamCanvas" width="600" height="600"></canvas>
+    </div>
+  
+    <div class="dream-controls">
+      <h2>Создай свой Ловец Снов</h2>
+  
+      <div class="selector-group">
+        <label>Выберите рамку:</label>
+        <select id="ringSelect">
+          <option value="1">Тёмная рамка</option>
+          <option value="2">Светлая рамка</option>
+          <option value="3">Плетёная рамка</option>
+        </select>
+      </div>
+  
+      <div class="selector-group">
+        <label>Плетение:</label>
+        <select id="webSelect">
+          <option value="1">Классическое</option>
+          <option value="2">Спираль</option>
+          <option value="3">Хаос</option>
+        </select>
+      </div>
+  
+      <div class="selector-group">
+        <label>Бусинки:</label>
+        <select id="beadSelect">
+          <option value="1">Красные</option>
+          <option value="2">Синие</option>
+          <option value="3">Чёрные</option>
+        </select>
+      </div>
+  
+      <div class="selector-group">
+        <label>Пёрышки:</label>
+        <select id="featherSelect">
+          <option value="1">Фиолетовые</option>
+          <option value="2">Золотые</option>
+          <option value="3">Белые</option>
+        </select>
+      </div>
+  
+      <button id="saveDreamBtn">Сохранить</button>
+      <button id="backToMenuBtn">Назад в меню</button>
+    </div>
+  </section>
+  
+  
+  
+  
+    
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/game3.js"></script>
+
+</body>
+</html>

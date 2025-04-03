@@ -14,17 +14,13 @@
 
                 
     <title>Таро книголюбов</title>
+    <style>
+      body { margin: 0!important; overflow: hidden; top: 0; }
+      canvas { display: block; }
+  </style>
 </head>
 <body>
 
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
-        <defs>
-          <filter id="ink-blot">
-            <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="3" seed="3" result="turbulence"/>
-            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="120" xChannelSelector="R" yChannelSelector="G"/>
-          </filter>
-        </defs>
-      </svg>
       
 
     <button id="toggleDevMode" style="
@@ -43,6 +39,7 @@
 ">
   💻 Режим разработки
 </button>
+
 
 
     <section id="screen1">
@@ -241,10 +238,16 @@
     
 
      <section id="choiceScreen" class="hidden">
-    
-    <div class="moon">
-    <img src="https://i.postimg.cc/C52hYXmx/pngwing-com-7.png" alt="">
-    </div>
+     
+      
+      <div class="mirrordame">
+      </div>  
+      <div class="mirror-mist">
+          <div class="mist-layer mist1"></div>
+          <div class="mist-layer mist2"></div>
+          <div class="mist-layer mist3"></div>
+      </div>
+       <canvas id="canvas"></canvas>
 
     <div class="content">
     <h1>Вы хотите найти интересную книгу<br> или поиграть в мини-игру?</h1>
@@ -282,13 +285,6 @@
         <div class="cards-container"></div>
 </div>
   
-    <canvas id="canvas"></canvas>
-    <div class="mirror-mist">
-        <div class="mist-layer mist1"></div>
-        <div class="mist-layer mist2"></div>
-        <div class="mist-layer mist3"></div>
-    </div>
-    <div class="mirrordame"></div>
  
 </section>
 
@@ -320,7 +316,7 @@
 
     <!-- Колода карт -->
     <div id="cardDeck" class="deck">
-        <img src="https://i.postimg.cc/yY0R6ZDB/deck.png" alt="Колода карт">
+        <img src="https://i.postimg.cc/jdDVRqVf/Frame-2131331869.png" alt="Колода карт">
     </div>
 
     <!-- Контейнер для карт -->
@@ -334,7 +330,7 @@
       <!-- Игра 1 -->
     
       <div class="game-card-container">
-        <a href="game1.html" class="card" target="_blank">
+        <a href="../pages/game1.html" class="card">
           <div class="wrapper">
             <img src="https://i.postimg.cc/B6LDbXxW/Piki.png" class="cover-image" />
           </div>
@@ -348,20 +344,20 @@
       <!-- Игра 2 -->
 
       <div class="game-card-container">
-        <a href="game1.html" class="card" target="_blank">
+        <a href="../pages/game2.html" class="card">
           <div class="wrapper">
             <img src="https://i.postimg.cc/XYL9zMVP/Chervi.png" class="cover-image" />
           </div>
-          <span class="title">Найди пару</span>
+          <span class="title">Волшебные кристаллы</span>
           <img src="https://i.postimg.cc/q7Zyp86X/Chervi-Man.png" class="character" />
         </a>
-        <p class="game-description">Успокой свой разум, находя одинаковые карты в мраке таро-вселенной. Простая, но гипнотизирующая медитация.</p>
+        <p class="game-description">Погрузитесь в магический мир, собирая волшебные кристаллы. Эта игра поможет вам расслабиться и&nbsp;насладиться чарующей атмосферой волшебства.</p>
       </div>
   
       <!-- Игра 3 -->
       
       <div class="game-card-container">
-        <a href="game1.html" class="card" target="_blank">
+        <a href="game1.html" class="card">
           <div class="wrapper">
             <img src="https://i.postimg.cc/k40Sbqc2/Joker.png" class="cover-image" />
           </div>
@@ -376,7 +372,7 @@
       <!-- Игра 4 -->
   
       <div class="game-card-container">
-        <a href="game1.html" class="card" target="_blank">
+        <a href="game1.html" class="card">
           <div class="wrapper">
             <img src="https://i.postimg.cc/yYz966x5/Treff.png" class="cover-image" />
           </div>
@@ -390,7 +386,7 @@
        <!-- Игра 5 -->
   
       <div class="game-card-container">
-        <a href="game1.html" class="card" target="_blank">
+        <a href="game1.html" class="card">
           <div class="wrapper">
             <img src="https://i.postimg.cc/x1nK5jSH/Bubi.png" class="cover-image" />
           </div>
@@ -405,6 +401,14 @@
   
 
 
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
+    <defs>
+      <filter id="ink-blot">
+        <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="3" seed="3" result="turbulence"/>
+        <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="120" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
@@ -420,7 +424,7 @@
       const allSections = document.body.querySelectorAll('body > *:not(#toggleDevMode):not(script)');
   
       allSections.forEach(el => {
-        if (!el.matches('#choiceGame')) {
+        if (!el.matches('#genreSelectionScreen')) {
           el.style.display = devMode ? 'none' : '';
         } else {
           el.style.display = devMode ? 'block' : '';

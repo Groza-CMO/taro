@@ -26,7 +26,7 @@ const crystalImages = [
 
 let cells = [];
 let score = 0;
-let timeLeft = 120;
+let timeLeft = 180;
 let timerInterval;
 let firstSelected = null;
 let isAnimating = false;
@@ -219,23 +219,45 @@ function dropCrystals(matchedIndices) {
 
 function endGame(success) {
   clearInterval(timerInterval);
-  gameOverEl.classList.remove("hidden");
-  grid.style.display = "none";
-  const collected = collectedTypes[targetType];
-  finalScoreEl.textContent = score;
+  grid.style.opacity = 0;
 
-  gameOverEl.innerHTML = success
-    ? ` Ура, цель уровня достигнута! Все нужные кристаллы собраны!\nТы набрала очков: ${score}`
-    : ` Время вышло!<br>Ты набрала очков: ${score}<br> Собрано ${collected} из ${targetAmount}`;
+  setTimeout(() => {
+    grid.style.display = "none";
+    gameOverEl.classList.remove("hidden");
+
+    const collected = collectedTypes[targetType];
+    finalScoreEl.textContent = score;
+
+    if (success) {
+      gameOverEl.innerHTML = `
+        <div class="success-box">
+          <h2>Ура, цель уровня достигнута!</h2>
+          <h3>Все кристаллы собраны!<br>
+         Набранные очки: <span class="score-value">${score}</span></h3>
+         <p class="future"><i>Дорогой книголюб, очередное волшебное предсказание разблокировано! Твои успехи предвещают тебе удивительные открытия на&nbsp;страницах книг. В&nbsp;ближайшее время ты&nbsp;найдешь книгу, которая откроет тебе новые горизонты и&nbsp;подарит незабываемые эмоции. Пусть каждое прочитанное слово приносит тебе радость и&nbsp;вдохновение!<i></p>   
+        </div>
+      `;
+    } else {
+      gameOverEl.innerHTML = `
+        <div class="success-box">
+        <h2>Время вышло!</h2>
+        <p>Ты набрала очков: <span class="score-value">${score}</span> <br>
+        Собрано <span class="collected-value">${collected}</span> из <span class="target-value">${targetAmount}</span> кристаллов</p>
+        </div>
+      `;
+    }
+  }, 400);
 }
+
 
 restartBtn?.addEventListener("click", () => {
   location.reload();
 });
 
 backBtn?.addEventListener("click", () => {
-  window.location.href = "index.html";
+  window.location.href = "../index.html#choiceGame";
 });
+
 
 fillGrid();
 timerInterval = setInterval(updateTimer, 1000);

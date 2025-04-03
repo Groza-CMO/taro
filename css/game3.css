@@ -1,0 +1,43 @@
+.dream-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background: radial-gradient(ellipse at center, #1d0b2d, #000);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.dream-canvas-wrapper {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid gold;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.dream-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 2rem;
+  border: 1px solid gold;
+  border-radius: 10px;
+  max-width: 400px;
+}
+
+.selector-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+select,
+button {
+  background: #4c1a66;
+  color: white;
+  border: 1px solid gold;
+  padding: 0.5rem;
+  border-radius: 5px;
+}

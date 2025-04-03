@@ -1,3 +1,4 @@
+
 // == МАССИВЫ ==  //
 
 //== Массиво попапов ==//
@@ -39,109 +40,146 @@ const moodData = {
 
 const genresByMood = {
     joy: [
-        { name: "Фэнтези", 
-            arcana: "Маг", 
-            description: "Мир волшебства, магии и великих приключений.", 
-            image: "https://i.postimg.cc/Y9W5CBpq/The-Magician.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
-         },
-        { name: "Приключения", 
-            arcana: "Дурак", 
-            description: "Опасные путешествия и неожиданные открытия.", 
-            image: "https://i.postimg.cc/q7R00Fhz/Fool.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
-         },
-        { name: "Хоррор", 
-            arcana: "Повешенный", 
-            description: "Ощущение страха, леденящие душу тайны.", 
-            image: "https://i.postimg.cc/2SjNFtx2/The-Hanged-Man.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
-    ],
-    calm: [
-        { name: "Классика", 
-            arcana: "Иерофант", 
-            description: "Вечные произведения, наполняющие смыслом.", 
+        {
+          name: "Фэнтези",
+          arcana: "Маг",
+          description: "Ты открываешь дверь&nbsp;— и&nbsp;попадаешь в&nbsp;мир, где возможно всё. Здесь магия витает в&nbsp;воздухе, драконы летают над башнями, а&nbsp;избранные герои встают на&nbsp;путь, полный опасностей&nbsp;и&nbsp;подвигов. Фэнтези не&nbsp;просто уводит от&nbsp;реальности&nbsp;— оно создаёт другую, где чудо становится понятным, простым, а&nbsp;мечта&nbsp; превращается в&nbsp;реальность.",
+          image: "https://i.postimg.cc/Y9W5CBpq/The-Magician.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Приключения",
+          arcana: "Дурак",
+          description: "Каждый шаг&nbsp;— риск. Каждая трещина в&nbsp;земле&nbsp;— шанс. Приключения несут за&nbsp;собой ветер перемен, запах костров, шум погонь. Здесь герои не&nbsp;ждут&nbsp;— они идут. Вперёд, навстречу неизвестному. И&nbsp;ты идёшь с&nbsp;ними, потому что&nbsp;жизнь без приключений&nbsp;— это просто повторяющийся день.",
+          image: "https://i.postimg.cc/q7R00Fhz/Fool.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Хоррор",
+          arcana: "Повешенный",
+          description: "Ты знаешь, что&nbsp;не&nbsp;стоит туда идти. Но&nbsp;идёшь. Потому что&nbsp;страшно&nbsp;— значит, важно. В&nbsp;хорроре страх не&nbsp;кричит&nbsp;— он шепчет. Он ползёт по&nbsp;коже, замирает в&nbsp;темноте, ждёт за&nbsp;спиной. Эти истории пугают, чтобы&nbsp;напомнить: даже в&nbsp;тьме ты можешь найти себя. Или потеряться навсегда.",
+          image: "https://i.postimg.cc/2SjNFtx2/The-Hanged-Man.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        }
+      ],
+      calm: [
+        {
+            name: "Классика",
+            arcana: "Иерофант",
+            description: "Это не просто книги&nbsp;— это отпечатки вечности. Классика не&nbsp;стареет, она тянется к&nbsp;нам сквозь века. Герои этих историй говорят с&nbsp;нами языком прошлого, который мы вдруг начинаем понимать. Здесь — глубина, ясность и&nbsp;вопросы, на&nbsp;которые мы всё ещё ищем ответы. И&nbsp;каждый раз — словно впервые.",
             image: "https://i.postimg.cc/2SHRHxcm/The-Hierophant.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
-        { name: "Драма", 
-            arcana: "Сила", 
-            description: "Глубокие переживания, испытания и борьба.", 
-            image: "https://i.postimg.cc/HnQ1BDKP/Power.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
-        { name: "Психологический триллер", 
-            arcana: "Луна", 
-            description: "Напряжённые события и загадки разума.", 
-            image: "https://i.postimg.cc/JhGwSBvX/Moon.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
-    ],
+            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Драма",
+          arcana: "Сила",
+          description: "Здесь нет масок. Только правда. В&nbsp;драме боль&nbsp;— настоящая, выбор&nbsp;— сложный, а&nbsp;герои живые. Они падают, поднимаются, ломаются и&nbsp;снова идут. И&nbsp;мы идём вместе с&nbsp;ними, потому что&nbsp;узнаём в&nbsp;их историях свои. Это жанр, в&nbsp;котором сердце разрывается, чтобы&nbsp; собраться снова и&nbsp;стать сильнее.",
+          image: "https://i.postimg.cc/HnQ1BDKP/Power.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Психологический триллер",
+          arcana: "Луна",
+          description: "Ты уверен, что&nbsp;всё понял&nbsp;— но&nbsp;через страницу всё меняется. Здесь ничего не&nbsp;очевидно. В&nbsp;каждом взгляде, в&nbsp;каждом жесте&nbsp;— ловушка. Психологический триллер крепко держит за&nbsp;горло, заставляя сомневаться даже в&nbsp;себе. Потому что&nbsp;самый опасный враг&nbsp;— тот, что&nbsp;прячется внутри.",
+          image: "https://i.postimg.cc/JhGwSBvX/Moon.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        }
+      ],
     sadness: [
-        { name: "Романтическая проза", 
-            arcana: "Императрица", 
-            description: "Чувственные истории о любви и жизни.", 
-            image: "https://i.postimg.cc/tCNH6bFs/The-Empress.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
-        { name: "Исторический роман", 
-            arcana: "Император", 
-            description: "Путешествия во времени и судьбы людей.", 
-            image: "https://i.postimg.cc/T3QGzxPz/Emperor.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
-        { name: "Детектив", 
-            arcana: "Правосудие", 
-            description: "Расследования, преступления и поиски истины.", 
-            image: "https://i.postimg.cc/JnHLHBQ8/Justice.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
-    ],
-    inspiration: [
-        { name: "Научная фантастика", 
-            arcana: "Звезда", 
-            description: "Технологии будущего и великие открытия.", 
-            image: "https://i.postimg.cc/SQ84yCs7/Star.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
-        { name: "Экшн", 
-            arcana: "Колесница", 
-            description: "Динамичные события, погони и схватки.", 
-            image: "https://i.postimg.cc/wTpp3MRK/The-Chariot.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
-        { name: "Трагедия", 
-            arcana: "Смерть", 
-            description: "Сильные эмоции, неизбежные потери и катарсис.", 
-            image: "https://i.postimg.cc/sg3sHx3P/Death.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
-    ],
+        {
+          name: "Романтическая проза",
+          arcana: "Императрица",
+          description: "В&nbspеё мире любовь не&nbsp;громкая, а&nbsp;глубокая. Это нежность, в&nbsp;которой можно раствориться, и&nbsp;боль, которую не&nbsp;променяешь ни&nbsp;на&nbsp;что. Здесь чувства не&nbsp;демонстрируют&nbsp;— ими живут. Даже если сердце разбито, оно продолжает верить. Потому что&nbsp;в&nbsp;таких историях любовь&nbsp;— не&nbsp;момент, а&nbsp;целая жизнь.",
+          image: "https://i.postimg.cc/tCNH6bFs/The-Empress.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Исторический роман",
+          arcana: "Император",
+          description: "Когда страсти бушуют на&nbsp;фоне великой эпохи, каждое решение нужно тщательно взвесить. Здесь любовь переплетается с&nbsp;долгом, личное&nbsp;— с&nbsp;с общим, а&nbsp;каждый герой&nbsp;— часть чего-то важного. Эти истории полны силы, потерь и&nbsp;величия. Здесь на&nbsp;кону&nbsp; не&nbsp;только судьба, но&nbsp;и&nbsp;жизнь.",
+          image: "https://i.postimg.cc/T3QGzxPz/Emperor.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Детектив",
+          arcana: "Правосудие",
+          description: "Истина всегда где-то рядом&nbsp;— но&nbsp;спрятана. В&nbsp;этих историях всё имеет значение: взгляд, слишком долгая пауза, мельчайшая деталь. Герой ищет ответы, не&nbsp;доверяя никому&nbsp;— даже себе. Он&nbsp;распутывает чужие тайны, но&nbsp;всё&nbsp;больше запутывается в&nbsp;собственных. И&nbsp;правда, когда она&nbsp;всплывает, уже не&nbsp;приносит облегчения.",
+          image: "https://i.postimg.cc/JnHLHBQ8/Justice.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        }
+      ],
+      inspiration: [
+        {
+          name: "Научная фантастика",
+          arcana: "Звезда",
+          description: "Всё начинается с&nbsp;одного вопроса: «А&nbsp;что если?» И&nbsp;дальше&nbsp;— вселенные, технологии, новые формы жизни и&nbsp;мышления. Здесь не&nbsp;просто миры&nbsp;— здесь мечты о&nbsp;будущем. Иногда пугающем, иногда прекрасном. Главное&nbsp;— мысль, которая летит вперёд, оставляя реальность далеко позади.",
+          image: "https://i.postimg.cc/SQ84yCs7/Star.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Экшн",
+          arcana: "Колесница",
+          description: "Сердце бьётся быстрее. Погоня, бой, решающий прыжок&nbsp;— всё происходит на&nbsp;грани. Но&nbsp;дело не&nbsp;только в&nbsp;скорости: за&nbsp;действиями стоят выборы, боль и&nbsp;желание выстоять. Герой здесь не&nbsp;идеален, но&nbsp;он идёт до&nbsp;конца. И&nbsp;именно это делает его сильным. Даже если ставки&nbsp;— всё.",
+          image: "https://i.postimg.cc/wTpp3MRK/The-Chariot.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Трагедия",
+          arcana: "Смерть",
+          description: "Что-то ломается&nbsp;— медленно, неотвратимо. Персонажи борются, но&nbsp;судьба оказывается сильнее. Здесь нет счастливого конца, но&nbsp;есть правда. Честная, тяжёлая, очищающая. Эти истории не&nbsp;пугают смертью&nbsp;— они говорят о&nbsp;жизни. О&nbsp;том, как больно терять, но&nbsp;как важно помнить и&nbsp;чувствовать.",
+          image: "https://i.postimg.cc/sg3sHx3P/Death.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        }
+      ],
     tiredness: [
-        { name: "Готическая литература", 
-            arcana: "Дьявол", 
-            description: "Мрачные тайны, заброшенные замки и судьбы.", 
-            image: "https://i.postimg.cc/0NBvNCDZ/Devil.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
-        { name: "Философский роман", 
-            arcana: "Отшельник", 
-            description: "Размышления о жизни, судьбе и смысле.", 
-            image: "https://i.postimg.cc/mkxGY2dH/Hermit.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
-        { name: "Мистика", 
-            arcana: "Жрица", 
-            description: "Скрытые знания, предчувствия и судьбоносные знаки.", 
-            image: "https://i.postimg.cc/HLRGmk1h/The-Priestess.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
-    ],
-    confusion: [
-        { name: "Юмор", 
-            arcana: "Солнце", 
-            description: "Забавные истории, поднимающие настроение.", 
-            image: "https://i.postimg.cc/DfqVVhjx/The-sun.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
-        { name: "Сказка", 
-            arcana: "Колесо Фортуны", 
-            description: "Волшебные истории, где добро побеждает зло.", 
-            image: "https://i.postimg.cc/zvw4Twbs/The-Wheel-of-Fortune.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"},
-        { name: "Романтика", 
-            arcana: "Влюблённые", 
-            description: "Сердечные переживания, чувства и судьба.", 
-            image: "https://i.postimg.cc/d3cz7N1R/The-lovers.png",
-            imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"}
-    ]
+        {
+          name: "Готическая литература",
+          arcana: "Дьявол",
+          description: "Мрак притягивает. Здесь за&nbsp;каждым углом&nbsp;— тайна, за&nbsp;каждой улыбкой&nbsp;— обман, а&nbsp;любовь пахнет ладаном и&nbsp;пеплом. В&nbsp;этих историях герои не&nbsp;спасаются&nbsp;— они тонут в&nbsp;пучинах интриг добровольно, но&nbsp;красиво. Готика манит, не&nbsp;пугает. Она ведёт по&nbsp;коридорам подсознания, где за&nbsp; тёмными окнами шепчет что-то слишком похожее на&nbsp;тебя.",
+          image: "https://i.postimg.cc/0NBvNCDZ/Devil.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Философский роман",
+          arcana: "Отшельник",
+          description: "Всё замирает. Нет шума, нет спешки&nbsp;— только ты и&nbsp;мысль, которую невозможно отогнать. Здесь не&nbsp;ищут ответы&nbsp;— здесь учатся жить с&nbsp;вопросами. Каждый герой идёт вглубь своих мыслей, как в&nbsp;тёмный лес, без фонаря и&nbsp;карты. И&nbsp;чем дальше он заходит, тем яснее становится, зачем он туда пошёл.",
+          image: "https://i.postimg.cc/mkxGY2dH/Hermit.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Мистика",
+          arcana: "Жрица",
+          description: "Ты знаешь, что&nbsp;это было не&nbsp;просто совпадение. Ты чувствуешь это. Здесь всё происходит не&nbsp;случайно: сны повторяются, тени прошлого говорят, зеркала помнят больше, чем должны. Мистика не&nbsp;кричит&nbsp;— она затаилась и&nbsp;ждёт. Она подкидывает знаки, и&nbsp;если ты решишь их прочитать, назад пути уже не&nbsp;будет.",
+          image: "https://i.postimg.cc/HLRGmk1h/The-Priestess.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        }
+      ],
+      confusion: [
+        {
+          name: "Юмор",
+          arcana: "Солнце",
+          description: "Один неловкий момент, одно случайное слово&nbsp;— и&nbsp;ты уже смеёшься. Не&nbsp;потому что&nbsp;легко, а&nbsp;потому что&nbsp;по-другому никак. Юмор&nbsp;— это броня, спасательный круг и&nbsp;тайное оружие. Он позволяет выдохнуть, остаться собой, когда всё идёт не&nbsp;так. Это светлая пауза между слишком серьёзными мыслями.",
+          image: "https://i.postimg.cc/DfqVVhjx/The-sun.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Сказка",
+          arcana: "Колесо Фортуны",
+          description: "Стоит только шагнуть за&nbsp;порог&nbsp;— и&nbsp;ты уже в&nbsp;другом мире. Здесь говорят звери, добро побеждает, а&nbsp;случайная находка меняет судьбу. Сказка не&nbsp;для детей&nbsp;— она для тех, кто не&nbsp;разучился верить. В&nbsp;этих историях чудо всегда рядом, нужно только открыть глаза и&nbsp;решиться сделать шаг навстречу.",
+          image: "https://i.postimg.cc/zvw4Twbs/The-Wheel-of-Fortune.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        },
+        {
+          name: "Романтика",
+          arcana: "Влюблённые",
+          description: "Они встретились&nbsp;— и&nbsp;всё вокруг стало другим. Здесь каждое слово звучит громче, каждый взгляд дольше, чем нужно. В&nbsp;этих историях чувства не&nbsp;объясняют&nbsp;— ими дышат. Романтика не&nbsp;гарантирует лёгкого пути, но&nbsp;обещает, что&nbsp;всё будет по-настоящему. Слишком сильно, слишком глубоко, слишком важно.",
+          image: "https://i.postimg.cc/d3cz7N1R/The-lovers.png",
+          imageArcana: "https://i.postimg.cc/MHH6Cq0L/pngwing-com-10.png"
+        }
+      ]
+      
+      
+      
 };
 
 // == Массив книг == //
@@ -895,22 +933,6 @@ const books = [
 
 ];
 
-
-// Для редактирования определённого экрана без отбрасывания к началу
-// window.addEventListener("beforeunload", () => {
-//     const activeSection = document.querySelector("section:not(.hidden)"); 
-//     if (activeSection) {
-//         sessionStorage.setItem("lastSection", activeSection.id);
-//     }
-// });
-
-// // //  После загрузки страницы возвращаемся к сохранённой секции
-// window.addEventListener("load", () => {
-//     const lastSection = sessionStorage.getItem("lastSection");
-//     if (lastSection) {
-//         showSection(lastSection);
-//     }
-// });
 
 // == АНИМАЦИИ ГЛАВНОГО ЭКРАНА  == //
 
@@ -1921,8 +1943,18 @@ document.getElementById("btnRandomGenre")?.addEventListener("click", function ()
     showSection("magicMirrorScreen");
 });
 
-document.getElementById("btnPlay").addEventListener("click", function () {
-   showSection("choiceGame");
+// Обработчик клика на "Играть в игры"
+document.getElementById("btnPlay")?.addEventListener("click", function () {
+    showSection("choiceGame");
+ });
+ 
+ //  Поддержка хэша при открытии страницы 
+ document.addEventListener("DOMContentLoaded", function () {
+     const hash = window.location.hash?.replace("#", "");
+     if (hash) {
+         showSection(hash);
+     }
+     
 });
 
 
@@ -1939,27 +1971,6 @@ const games = [
     { title: "Ловец снов", link: "#" },
     { title: "Книжное предсказание", link: "#" }
 ];
-
-
-
-// // === ОТОБРАЖЕНИЕ ИГР ===
-// function displayGames() {
-//     const gamesContainer = document.getElementById("gamesContainer");
-//     gamesContainer.innerHTML = "";
-
-//     games.forEach(game => {
-//         const gameCard = document.createElement("div");
-//         gameCard.classList.add("game-card");
-//         gameCard.innerHTML = `
-//             <h3>${game.title}</h3>
-//             <a href="${game.link}">Играть</a>
-//         `;
-//         gamesContainer.appendChild(gameCard);
-//     });
-// }
-
-
-
 
 
 //book animation
@@ -1988,3 +1999,6 @@ const games = [
 //   }
   
 // }
+
+
+
